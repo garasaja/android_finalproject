@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="홈"/>
+
+    <item
+        android:id="@+id/bottom_store"
+        android:enabled="true"
+        android:icon="@drawable/ic_business_center_black_24dp"
+        android:title="카페"/>
+
+    <item
+        android:id="@+id/bottom_theme"
+        android:enabled="true"
+        android:icon="@drawable/ic_card_giftcard_black_24dp"
+        android:title="테마"/>
+
+    <item
+        android:id="@+id/bottom_map"
+        android:enabled="true"
+        android:icon="@drawable/ic_place_black_24dp"
+        android:title="지도"/>
+
+    <item
+        android:id="@+id/bottom_mymenu"
+        android:enabled="true"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="더보기"/>
+</menu>
