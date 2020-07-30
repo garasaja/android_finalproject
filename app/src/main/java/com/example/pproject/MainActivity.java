@@ -70,17 +70,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        viewPager1 = findViewById(R.id.viewPager1);
-        viewPager1.setOffscreenPageLimit(3);
+     //   viewPager1 = findViewById(R.id.viewPager1);
+//        viewPager1.setOffscreenPageLimit(3);
 
-        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
-        adapter.addItem(home);
+//        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
 //        adapter.addItem(home);
-//        adapter.addItem(home);
-//        adapter.addItem(home);
-//        adapter.addItem(home);
-
-        viewPager1.setAdapter(adapter);
+////        adapter.addItem(home);
+////        adapter.addItem(home);
+////        adapter.addItem(home);
+////        adapter.addItem(home);
+//
+//        viewPager1.setAdapter(adapter);
 
     }
 

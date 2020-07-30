@@ -28,5 +28,7 @@
         android:id="@+id/bottom_mymenu"
         android:enabled="true"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="더보기"/>
+        android:title="더보기"
+        app:labelVisibilityMode="unlabeled"/>
+
 </menu>
