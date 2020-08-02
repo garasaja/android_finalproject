@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#0E0D02">
+    android:layout_height="match_parent">
+<!--    android:background="#0E0D02">-->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +25,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/main1"
+                android:scaleType="fitXY"/>
 
         </LinearLayout>
 
@@ -40,11 +42,11 @@
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
-            <!--리사이클러뷰 들어갈자리-->
-            <ImageView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_store"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background" />
+                android:scrollbars="horizontal"/>
 
 
         </LinearLayout>
@@ -63,11 +65,9 @@
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
-            <!--리사이클러뷰 들어갈자리-->
-            <ImageView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

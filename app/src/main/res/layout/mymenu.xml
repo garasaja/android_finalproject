@@ -33,53 +33,61 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:text="찜한카페"
                 android:textSize="30sp"
                 android:gravity="left"
                 android:layout_marginLeft="20dp"/>
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:text="찜한테마"
                 android:textSize="30sp"
                 android:gravity="left"
                 android:layout_marginLeft="20dp"/>
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:text="예약내역"
                 android:textSize="30sp"
                 android:gravity="left"
                 android:layout_marginLeft="20dp"/>
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:text="공지사항"
                 android:textSize="30sp"
                 android:gravity="left"
                 android:layout_marginLeft="20dp"/>
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/white"
                 android:text="문의하기"
                 android:textSize="30sp"
                 android:gravity="left"
                 android:layout_marginLeft="20dp"/>
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="설정"
-                android:textSize="30sp"
+                android:background="@android:color/white"
+                android:text=" 설정"
                 android:gravity="left"
+                android:textSize="30sp"
                 android:layout_marginLeft="20dp"/>
+
+
 
 
 

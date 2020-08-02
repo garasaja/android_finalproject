@@ -35,4 +35,15 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.2.0-alpha02'
 
+    // build.gradle (app) - dependency 추가
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/libDaumMapAndroid.jar')
+
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    //lombok
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
