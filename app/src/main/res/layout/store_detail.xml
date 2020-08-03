@@ -46,7 +46,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    <Button
+
+        <Button
+            android:id="@+id/call"
         android:layout_width="205dp"
         android:layout_height="match_parent"
         android:background="#FFEB3B"
@@ -54,7 +56,9 @@
         android:textColor="#FB5C5C"
         android:textSize="20sp"/>
 
-    <Button
+
+        <Button
+            android:id="@+id/reserve"
         android:layout_width="205dp"
         android:layout_height="match_parent"
         android:background="#FFEB3B"

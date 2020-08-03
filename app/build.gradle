@@ -46,4 +46,7 @@ dependencies {
     //lombok
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    //calendar
+    implementation 'com.prolificinteractive:material-calendarview:1.4.3'
 }

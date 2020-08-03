@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyViewHolder> {
+public class HomethemeAdapter extends RecyclerView.Adapter<HomethemeAdapter.MyViewHolder> {
     private static final String TAG = "ProfileAdapter";
-    private List<HomeStore> items = new ArrayList<>();
+    private List<Hometheme> items = new ArrayList<>();
 
-    public void addItem(HomeStore homeStore) {
-        items.add(homeStore);
+    public void addItem(Hometheme hometheme) {
+        items.add(hometheme);
     }
 
     @NonNull
@@ -25,19 +25,14 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: ");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.home_item1,parent,false);
-
-
-
-
-
+        View view = inflater.inflate(R.layout.home_item2,parent,false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        HomeStore homeStore = items.get(position);
-        holder.setItem(homeStore);
+        Hometheme hometheme = items.get(position);
+        holder.setItem(hometheme);
     }
 
     @Override
@@ -57,8 +52,8 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
 
         }
 
-        public void setItem(HomeStore homeStore) {
-            storeIntro.setImageResource(homeStore.getImage1());
+        public void setItem(Hometheme hometheme) {
+            storeIntro.setImageResource(hometheme.getImage1());
         }
     }
 }
