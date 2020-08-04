@@ -34,6 +34,7 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/mymenu_likestore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -43,6 +44,7 @@
                 android:layout_marginLeft="20dp"/>
 
             <Button
+                android:id="@+id/mymenu_liketheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -52,6 +54,7 @@
                 android:layout_marginLeft="20dp"/>
 
             <Button
+                android:id="@+id/mymenu_reservelist"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -61,6 +64,7 @@
                 android:layout_marginLeft="20dp"/>
 
             <Button
+                android:id="@+id/mymenu_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -70,6 +74,7 @@
                 android:layout_marginLeft="20dp"/>
 
             <Button
+                android:id="@+id/mymenu_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -79,6 +84,7 @@
                 android:layout_marginLeft="20dp"/>
 
             <Button
+                android:id="@+id/mymenu_setting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"

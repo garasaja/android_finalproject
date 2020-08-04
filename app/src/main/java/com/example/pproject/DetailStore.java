@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailStore extends AppCompatActivity {
-
+    private static final String TAG = "DetailStore";
     private Button call,reserve;
 
     @Override

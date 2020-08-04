@@ -5,34 +5,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@android:color/black">
+    <include layout="@layout/toolbar_setting"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_back_black_24dp"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:text="설정"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"/>
-
-
-    </LinearLayout>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="내 정보 수정"
+        android:gravity="center"
         android:textSize="30sp"
         android:background="#40AAAAAA"/>
 

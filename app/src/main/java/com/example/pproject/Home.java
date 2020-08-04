@@ -2,6 +2,7 @@ package com.example.pproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Home extends Fragment {
+    private static final String TAG = "Home";
     private RecyclerView rvHomeStore,rvHometheme;
     private ImageView storeIntro;
 
@@ -31,6 +33,9 @@ public class Home extends Fragment {
         homeStoreAdapter.addItem(new HomeStore(R.drawable.main1));
         homeStoreAdapter.addItem(new HomeStore(R.drawable.main2));
         homeStoreAdapter.addItem(new HomeStore(R.drawable.main3));
+        homeStoreAdapter.addItem(new HomeStore(R.drawable.main1));
+        homeStoreAdapter.addItem(new HomeStore(R.drawable.main2));
+        homeStoreAdapter.addItem(new HomeStore(R.drawable.main3));
 
         rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         rvHomeStore.setAdapter(homeStoreAdapter);
@@ -40,10 +45,15 @@ public class Home extends Fragment {
         homethemeAdapter.addItem(new Hometheme(R.drawable.main1));
         homethemeAdapter.addItem(new Hometheme(R.drawable.main2));
         homethemeAdapter.addItem(new Hometheme(R.drawable.main3));
+        homethemeAdapter.addItem(new Hometheme(R.drawable.main1));
+        homethemeAdapter.addItem(new Hometheme(R.drawable.main2));
+        homethemeAdapter.addItem(new Hometheme(R.drawable.main3));
 
         rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         rvHometheme.setAdapter(homethemeAdapter);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
         return rootView;
     }

@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,7 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final String TAG = "Main_Activity";
     private long backBtnTime = 0;
 
     private BottomNavigationView bottomNavigationView;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Store store;
     private Theme theme;
     private ViewPager viewPager1;
+
 
 
     @Override
@@ -43,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         store = new Store();
         theme = new Theme();
 
+
+
         //첫화면 지정해주기
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,home).commit();
 
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.bottom_home:
+                        Log.d(TAG, "onNavigationItemSelected: 클림됨");
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame,home).commit();
                         return true;
                     case R.id.bottom_map:

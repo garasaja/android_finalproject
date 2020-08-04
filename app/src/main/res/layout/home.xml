@@ -66,7 +66,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_home_theme"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:scrollbars="horizontal"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
