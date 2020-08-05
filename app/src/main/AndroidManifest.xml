@@ -6,7 +6,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-    <meta-data android:name="com.kakao.sdk.AppKey" android:value="cf59601ff0d39885326f5d0266f38df0"/>
+
 
     <application
         android:usesCleartextTraffic="true"
@@ -33,6 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="cf59601ff0d39885326f5d0266f38df0"/>
     </application>
 
 </manifest>
