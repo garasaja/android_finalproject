@@ -12,17 +12,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailStore extends AppCompatActivity {
     private static final String TAG = "DetailStore";
-    private Button call,reserve;
+    private Button call,btnReserve;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_detail);
 
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
 
         call = findViewById(R.id.call);
-        reserve = findViewById(R.id.reserve);
+        btnReserve = findViewById(R.id.btn_reserve);
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,10 +32,10 @@ public class DetailStore extends AppCompatActivity {
             }
         });
 
-        reserve.setOnClickListener(new View.OnClickListener() {
+        btnReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+                Intent intent = new Intent(DetailStore.this,Calendar.class);
                 startActivity(intent);
             }
         });

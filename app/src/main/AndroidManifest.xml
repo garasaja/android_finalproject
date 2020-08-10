@@ -18,13 +18,13 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".DetailStore"/>
-        <activity android:name=".ReserveCalendarShow"/>
         <activity android:name=".ReserveList"/>
         <activity android:name=".Question"/>
         <activity android:name=".LikeTheme"/>
         <activity android:name=".LikeStore"/>
         <activity android:name=".Notice"/>
         <activity android:name=".Setting"/>
+        <activity android:name=".Calendar"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-public class ReserveCalendarShow extends AppCompatActivity {
+public class Calendar extends AppCompatActivity {
 
     private MaterialCalendarView materialCalendarView;
 
@@ -18,6 +18,5 @@ public class ReserveCalendarShow extends AppCompatActivity {
         setContentView(R.layout.reserve_calendar);
 
         materialCalendarView = findViewById(R.id.calendarView);
-
     }
 }

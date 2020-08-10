@@ -5,16 +5,24 @@
     android:layout_margin="4dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:padding="8dp">
 
         <ImageView
             android:id="@+id/store_intro"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:scaleType="fitXY"
             android:src="@drawable/cafe1" />
+
+        <ImageButton
+            android:id="@+id/favorite_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_before_favorite"/>
 
         <TextView
             android:id="@+id/text1"
@@ -41,11 +49,11 @@
 
         <TextView
             android:id="@+id/text2"
-            android:layout_width="75dp"
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/store_intro"
             android:layout_alignRight="@id/home_star"
-            android:text="거리"
+            android:text="난이도"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -56,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/store_intro"
             android:layout_alignRight="@id/text2"
-            android:text="15m"
+            android:text="5"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />

@@ -49,5 +49,24 @@ dependencies {
 
     //calendar
     implementation 'com.prolificinteractive:material-calendarview:1.4.3'
+
+    //daum map api
     implementation files('libs\\libDaumMapAndroid.jar')
+
+    // Material
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+
+    // LifeCycle (LiveData)
+    def lifecycle_version = "2.0.0"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    // Room
+    def room_version = "2.2.0-alpha02"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //carousel
+    implementation 'com.synnapps:carouselview:0.1.5'
 }

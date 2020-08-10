@@ -16,9 +16,10 @@
         app:mcv_showOtherDates="defaults" />
 
     <Button
+        android:id="@+id/btn_calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/black"
+        android:background="@android:color/white"
         android:text="선택 완료"/>
 
 </LinearLayout>
