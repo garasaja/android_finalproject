@@ -1,26 +1,26 @@
-package com.example.pproject;
+package com.example.pproject.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pproject.model.HomeStore;
+import com.example.pproject.HomeStoreAdapter;
+import com.example.pproject.model.Hometheme;
+import com.example.pproject.HomethemeAdapter;
+import com.example.pproject.R;
 import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
 
-public class Home extends Fragment {
+public class HomeFragment extends Fragment {
     private static final String TAG = "Home";
     private RecyclerView rvHomeStore,rvHometheme;
     CarouselView carouselView;

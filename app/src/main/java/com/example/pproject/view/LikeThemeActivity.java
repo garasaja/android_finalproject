@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,14 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Setting extends AppCompatActivity {
+import com.example.pproject.R;
+
+public class LikeThemeActivity extends AppCompatActivity {
     private Button back;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.setting);
+        setContentView(R.layout.liketheme);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -25,7 +27,5 @@ public class Setting extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-
-
     }
 }

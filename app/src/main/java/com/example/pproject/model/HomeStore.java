@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.model;
 
 public class HomeStore {
 

@@ -17,16 +17,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".DetailStore"/>
-        <activity android:name=".ReserveList"/>
-        <activity android:name=".Question"/>
-        <activity android:name=".LikeTheme"/>
-        <activity android:name=".LikeStore"/>
-        <activity android:name=".Notice"/>
-        <activity android:name=".Setting"/>
-        <activity android:name=".Calendar"/>
+        <activity android:name=".view.DetailStoreActivity"/>
+        <activity android:name=".view.ReserveListActivity"/>
+        <activity android:name=".view.QuestionActivity"/>
+        <activity android:name=".view.LikeThemeActivity"/>
+        <activity android:name=".view.LikeStoreActivity"/>
+        <activity android:name=".view.NoticeActivity"/>
+        <activity android:name=".view.SettingActivity"/>
+        <activity android:name=".view.CalendarActivity"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class MyMenu extends Fragment {
+import com.example.pproject.R;
+import com.example.pproject.view.LikeStoreActivity;
+import com.example.pproject.view.LikeThemeActivity;
+import com.example.pproject.view.NoticeActivity;
+import com.example.pproject.view.QuestionActivity;
+import com.example.pproject.view.ReserveListActivity;
+import com.example.pproject.view.SettingActivity;
+
+public class MyMenuFragment extends Fragment {
     private Button setting,likestore,liketheme,notice,question,reservelist;
     @Nullable
     @Override
@@ -27,42 +35,42 @@ public class MyMenu extends Fragment {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Setting.class);
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
             }
         });
         likestore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),LikeStore.class);
+                Intent intent = new Intent(getActivity(), LikeStoreActivity.class);
                 startActivity(intent);
             }
         });
         liketheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),LikeTheme.class);
+                Intent intent = new Intent(getActivity(), LikeThemeActivity.class);
                 startActivity(intent);
             }
         });
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Notice.class);
+                Intent intent = new Intent(getActivity(), NoticeActivity.class);
                 startActivity(intent);
             }
         });
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Question.class);
+                Intent intent = new Intent(getActivity(), QuestionActivity.class);
                 startActivity(intent);
             }
         });
         reservelist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),ReserveList.class);
+                Intent intent = new Intent(getActivity(), ReserveListActivity.class);
                 startActivity(intent);
             }
         });

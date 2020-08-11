@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Store extends Fragment {
+import com.example.pproject.model.HomeStore;
+import com.example.pproject.HomeStoreAdapter;
+import com.example.pproject.R;
+
+public class StoreFragment extends Fragment {
 
     private RecyclerView rvHomeStore;
     @Nullable

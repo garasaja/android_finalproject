@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.pproject.R;
+
 import net.daum.mf.map.api.MapView;
 
-public class Map extends Fragment {
+public class MapFragment extends Fragment {
     private MapView mapView;
 
     @Nullable

@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.view;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -6,9 +6,10 @@ import android.os.PersistableBundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pproject.R;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
-public class Calendar extends AppCompatActivity {
+public class CalendarActivity extends AppCompatActivity {
 
     private MaterialCalendarView materialCalendarView;
 

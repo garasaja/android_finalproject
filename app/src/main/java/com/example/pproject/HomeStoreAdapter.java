@@ -12,6 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pproject.model.HomeStore;
+import com.example.pproject.view.DetailStoreActivity;
+import com.example.pproject.view.fragment.HomeFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,15 +23,15 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
     private static final String TAG = "ProfileAdapter";
     private List<HomeStore> items = new ArrayList<>();
     private Context mContext;
-    private Home home;
+    private HomeFragment homeFragment;
 
     public HomeStoreAdapter() {
-        this.home = home;
+        this.homeFragment = homeFragment;
     }
 
 
-    public HomeStoreAdapter(Home home) {
-        this.home = home;
+    public HomeStoreAdapter(HomeFragment homeFragment) {
+        this.homeFragment = homeFragment;
     }
 
     public void addItem(HomeStore homeStore) {
@@ -79,7 +83,7 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
                     int pos = getAdapterPosition();
                     if(pos != RecyclerView.NO_POSITION) {
                         Toast.makeText(v.getContext(), pos+"리사이클러뷰클릭됨", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(v.getContext(),DetailStore.class);
+                        Intent intent = new Intent(v.getContext(), DetailStoreActivity.class);
                         v.getContext().startActivity(intent);
                     }
                 }

@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,16 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Notice extends AppCompatActivity {
-    private Button back;
+import com.example.pproject.R;
+
+public class LikeStoreActivity extends AppCompatActivity {
+
+    Button back;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.notice);
+        setContentView(R.layout.likestore);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
