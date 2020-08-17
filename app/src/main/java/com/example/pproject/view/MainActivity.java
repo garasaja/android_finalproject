@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +21,8 @@ import com.example.pproject.view.fragment.StoreFragment;
 import com.example.pproject.view.fragment.ThemeFragment;
 import com.example.pproject.view.fragment.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import java.util.ArrayList;
 
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         replaceFragment();
+        permissionListener();
+
 
 
      //   viewPager1 = findViewById(R.id.viewPager1);
@@ -60,6 +65,27 @@ public class MainActivity extends AppCompatActivity {
 //
 //        viewPager1.setAdapter(adapter);
 
+    }
+
+    public void permissionListener() {
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(MainActivity.this, "권한 허가", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                Toast.makeText(MainActivity.this, "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        TedPermission.with(this)
+                .setPermissionListener(permissionListener)
+                .setRationaleMessage("구글 로그인을 하기 위해서는 주소록 접근 권한이 필요해요")
+                .setDeniedMessage("왜 거부하셨어요...\n하지만 [설정] > [권한] 에서 권한을 허용할 수 있어요.")
+                .setPermissions(Manifest.permission.READ_CONTACTS)
+                .check();
     }
 
     public void init() {

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar1" />
+
 
     <RelativeLayout
         android:background="@android:color/white"
@@ -13,10 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <EditText
+
+            android:hint="검색할 장소를 입력 후 선택해주세요"
+            android:id="@+id/map_et_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="테스트"/>
+            />
+
 
         <RelativeLayout
             android:id="@+id/map_view"

@@ -1,6 +1,7 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,15 +27,18 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "Home";
     private RecyclerView rvHomeStore,rvHometheme;
     private HomeStoreAdapter homeStoreAdapter;
-    CarouselView carouselView;
+    private CarouselView carouselView;
+    private List<Store> storeList;
    // private ImageView storeIntro;
 
-    int[] sampleImages = {R.drawable.main1, R.drawable.main2, R.drawable.main3};
+    int[] carrouselImage = {R.drawable.main1, R.drawable.main2, R.drawable.main3};
 
     @Nullable
     @Override
@@ -55,25 +59,38 @@ public class HomeFragment extends Fragment {
 //        homeStoreAdapter.addItem(new Store(R.drawable.main2));
 //        homeStoreAdapter.addItem(new Store(R.drawable.main3));
 
-        rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+
         //rvHomeStore.setAdapter(homeStoreAdapter);
 
-        StoreService storeService = StoreService.retrofit.create(StoreService.class);
-        Call<List<Store>> call = storeService.스토어목록가져오기("rating",7);
-        call.enqueue(new Callback<List<Store>>() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://localhost:8000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        StoreService storeService = retrofit.create(StoreService.class);
+
+        Call<Store> call = storeService.스토어목록가져오기("rating",2);
+        call.enqueue(new Callback<Store>() {
             @Override
-            public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
-                if(response.isSuccessful() == true) {
-                    List<Store> store = response.body();
+            public void onResponse(Call<Store> call, Response<Store> response) {
+
+                if(response.isSuccessful()) {
+                    Store store = response.body();
+
+                    for (Store store1 : storeList) {
+                        storeList.add(store);
+                    }
+
                     //리사이클러뷰에 연결
-                    homeStoreAdapter.addItems(store);
+                    rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+                    homeStoreAdapter.addItems(storeList);
                     rvHomeStore.setAdapter(homeStoreAdapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Store>> call, Throwable t) {
-
+            public void onFailure(Call<Store> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
             }
         });
 
@@ -90,19 +107,19 @@ public class HomeFragment extends Fragment {
         rvHometheme.setAdapter(homethemeAdapter);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        carouselView.setPageCount(sampleImages.length);
+        carouselView.setPageCount(carrouselImage.length);
 
         carouselView.setImageListener(imageListener);
 
 
 
         return rootView;
-    }
+    } // oncreate view 끝나는곳
 
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
-            imageView.setImageResource(sampleImages[position]);
+            imageView.setImageResource(carrouselImage[position]);
         }
     };
 

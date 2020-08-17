@@ -35,6 +35,7 @@ public class StoreFragment extends Fragment {
 
         rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         rvHomeStore.setAdapter(homeStoreAdapter);
+
         return  rootView;
     }
 }
