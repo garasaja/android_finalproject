@@ -12,9 +12,9 @@ import retrofit2.http.Query;
 
 public interface StoreService {
 
-    @GET("/store")
-    Call <Store> 스토어목록가져오기(
-            @Query("sort_by") String sort_by, // query안에 sortby가 key 뒤에가 value
-            @Query("limit") int limit
+    @GET("store")
+    Call <List<Store>> 스토어목록가져오기(
+//            @Query("sort_by") String sort_by, // query안에 sortby가 key 뒤에가 value
+//            @Query("limit") int limit
     );
 }

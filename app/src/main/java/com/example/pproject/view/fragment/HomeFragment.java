@@ -22,6 +22,7 @@ import com.example.pproject.R;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -63,24 +64,21 @@ public class HomeFragment extends Fragment {
         //rvHomeStore.setAdapter(homeStoreAdapter);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8000/")
+                .baseUrl("http://222.234.36.82:58003/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         StoreService storeService = retrofit.create(StoreService.class);
 
-        Call<Store> call = storeService.스토어목록가져오기("rating",2);
-        call.enqueue(new Callback<Store>() {
+        Call <List<Store>> call = storeService.스토어목록가져오기();
+        call.enqueue(new Callback<List<Store>>() {
             @Override
-            public void onResponse(Call<Store> call, Response<Store> response) {
-
-                if(response.isSuccessful()) {
-                    Store store = response.body();
-
-                    for (Store store1 : storeList) {
+            public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
+                if (response.isSuccessful()) {
+                    List<Store> storeList = response.body();
+                    for (Store store : storeList) {
                         storeList.add(store);
                     }
-
                     //리사이클러뷰에 연결
                     rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
                     homeStoreAdapter.addItems(storeList);
@@ -89,10 +87,35 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<Store> call, Throwable t) {
-                Log.d(TAG, "onFailure: " + t.getMessage());
+            public void onFailure(Call<List<Store>> call, Throwable t) {
+
             }
         });
+
+//        Call <List<Store>> call = storeService.스토어목록가져오기("rating",2);
+//        call.enqueue(new ArrayList<Store>() {
+//            @Override
+//            public void onResponse(Call <List<Store>> call, Response<Store> response) {
+//
+//                if(response.isSuccessful()) {
+//                    Store store = response.body();
+//
+//                    for (Store store1 : storeList) {
+//                        storeList.add(store);
+//                    }
+//
+//                    //리사이클러뷰에 연결
+//                    rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+//                    homeStoreAdapter.addItems(storeList);
+//                    rvHomeStore.setAdapter(homeStoreAdapter);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Store> call, Throwable t) {
+//                Log.d(TAG, "onFailure: " + t.getMessage());
+//            }
+//        });
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         HomethemeAdapter homethemeAdapter = new HomethemeAdapter();

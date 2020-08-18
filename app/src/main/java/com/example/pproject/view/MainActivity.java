@@ -51,20 +51,6 @@ public class MainActivity extends AppCompatActivity {
         replaceFragment();
         permissionListener();
 
-
-
-     //   viewPager1 = findViewById(R.id.viewPager1);
-//        viewPager1.setOffscreenPageLimit(3);
-
-//        MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
-//        adapter.addItem(home);
-////        adapter.addItem(home);
-////        adapter.addItem(home);
-////        adapter.addItem(home);
-////        adapter.addItem(home);
-//
-//        viewPager1.setAdapter(adapter);
-
     }
 
     public void permissionListener() {
