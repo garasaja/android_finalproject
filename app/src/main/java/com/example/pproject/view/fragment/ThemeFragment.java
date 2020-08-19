@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,12 +18,14 @@ import com.example.pproject.R;
 
 public class ThemeFragment extends Fragment {
     private RecyclerView rvHomeStore;
+    private ImageButton favorite_btn;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.theme,container,false);
 
         rvHomeStore = rootView.findViewById(R.id.rv_home_store);
+        favorite_btn = rootView.findViewById(R.id.favorite_btn);
 
         HomeStoreAdapter homeStoreAdapter = new HomeStoreAdapter();
 //        homeStoreAdapter.addItem(new Store(R.drawable.main1));

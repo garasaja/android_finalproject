@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView rvHomeStore,rvHometheme;
     private HomeStoreAdapter homeStoreAdapter;
     private CarouselView carouselView;
+
     private List<Store> storeList;
    // private ImageView storeIntro;
 
@@ -133,6 +135,7 @@ public class HomeFragment extends Fragment {
         carouselView.setPageCount(carrouselImage.length);
 
         carouselView.setImageListener(imageListener);
+
 
 
 

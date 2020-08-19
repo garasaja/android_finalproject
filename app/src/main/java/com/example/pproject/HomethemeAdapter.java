@@ -27,7 +27,7 @@ public class HomethemeAdapter extends RecyclerView.Adapter<HomethemeAdapter.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: ");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.home_item2,parent,false);
+        View view = inflater.inflate(R.layout.item_home2,parent,false);
         return new MyViewHolder(view);
     }
 

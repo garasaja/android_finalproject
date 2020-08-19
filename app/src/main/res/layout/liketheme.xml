@@ -3,5 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_home_store"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal"/>
+
     <include layout="@layout/toolbar_liketheme"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

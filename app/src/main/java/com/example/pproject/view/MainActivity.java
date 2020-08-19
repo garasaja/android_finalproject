@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private MyMenuFragment myMenuFragment;
     private StoreFragment storeFragment;
     private ThemeFragment themeFragment;
-    private ViewPager viewPager1;
+
 
 
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         TedPermission.with(this)
                 .setPermissionListener(permissionListener)
                 .setRationaleMessage("구글 로그인을 하기 위해서는 주소록 접근 권한이 필요해요")
-                .setDeniedMessage("왜 거부하셨어요...\n하지만 [설정] > [권한] 에서 권한을 허용할 수 있어요.")
+                .setDeniedMessage("권한을 거부하셨습니다. [설정] > [권한]에서 권한을 허용할 수 있습니다.")
                 .setPermissions(Manifest.permission.READ_CONTACTS)
                 .check();
     }
