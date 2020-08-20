@@ -3,11 +3,16 @@ package com.example.pproject.view;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pproject.R;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
+
+import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -19,5 +24,12 @@ public class CalendarActivity extends AppCompatActivity {
         setContentView(R.layout.reserve_calendar);
 
         materialCalendarView = findViewById(R.id.calendarView);
+
+        materialCalendarView.setOnRangeSelectedListener(new OnRangeSelectedListener() {
+            @Override
+            public void onRangeSelected(@NonNull MaterialCalendarView widget, @NonNull List<CalendarDay> dates) {
+
+            }
+        });
     }
 }

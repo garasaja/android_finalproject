@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -15,11 +23,54 @@
         app:mcv_selectionColor="#a9dbf0cb"
         app:mcv_showOtherDates="defaults" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="매장"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_reservate_store"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="테마"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_home_theme"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="시간"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_reservate_theme"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal"/>
+
     <Button
-        android:id="@+id/btn_calendar"
+        android:id="@+id/btn_reservate_calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:text="선택 완료"/>
 
+
+
 </LinearLayout>
+
+</ScrollView>

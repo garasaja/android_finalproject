@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.adapter;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pproject.R;
 import com.example.pproject.model.Hometheme;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class HomethemeAdapter extends RecyclerView.Adapter<HomethemeAdapter.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: ");
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.item_home2,parent,false);
+        View view = inflater.inflate(R.layout.item_home_theme,parent,false);
         return new MyViewHolder(view);
     }
 

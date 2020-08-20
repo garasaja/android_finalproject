@@ -32,8 +32,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_mylocation"/>
 
-
-
         </RelativeLayout>
 
     </RelativeLayout>
