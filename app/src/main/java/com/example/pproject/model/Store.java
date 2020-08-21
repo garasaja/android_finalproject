@@ -3,8 +3,6 @@ package com.example.pproject.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

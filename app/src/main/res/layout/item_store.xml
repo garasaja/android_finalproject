@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp">
 
     <RelativeLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/store_intro"
-            android:layout_width="300dp"
-            android:layout_height="120dp"
+            android:id="@+id/iv_store_image"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
             android:scaleType="fitXY"
             android:src="@drawable/cafe1" />
 
         <ImageButton
-            android:id="@+id/favorite_btn"
+            android:id="@+id/store_favorite_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -28,7 +28,7 @@
             android:id="@+id/text1"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
+            android:layout_below="@id/iv_store_image"
             android:text="★ "
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -36,44 +36,32 @@
 
         <TextView
 
-            android:id="@+id/home_star"
+            android:id="@+id/store_point"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
+            android:layout_below="@id/iv_store_image"
             android:layout_alignRight="@id/text1"
-
             android:text=" 4.8"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
-            android:layout_alignRight="@id/home_star"
-            android:text="거리 15m"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/text2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/store_image"-->
+<!--            android:layout_alignRight="@id/store_star"-->
+<!--            android:text="거리 15m"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
 
         <TextView
-            android:id="@+id/home_location"
+            android:id="@+id/store_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
-            android:layout_alignRight="@id/text2"
-            android:text="거리 15m"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/home_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/home_star"
+            android:layout_below="@id/store_point"
             android:textStyle="bold"
             android:text="비밀의 화원" />
     </RelativeLayout>

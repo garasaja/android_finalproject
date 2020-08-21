@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
         carouselView = (CarouselView) rootView.findViewById(R.id.carouselView);
 
 
-        homeStoreAdapter = new HomeStoreAdapter();
+
 //        homeStoreAdapter.addItem(new Store(R.drawable.cafe1));
 //        homeStoreAdapter.addItem(new Store(R.drawable.main2));
 //        homeStoreAdapter.addItem(new Store(R.drawable.main3));
@@ -73,6 +73,7 @@ public class HomeFragment extends Fragment {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.0.21:8080/")
+                //.baseUrl("http://222.234.36.82:58003/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
@@ -104,6 +105,11 @@ public class HomeFragment extends Fragment {
         rvHomeStore.setAdapter(homeStoreAdapter);
         Log.d(TAG, "onResponse: rvHomeStore" + rvHomeStore);
 
+        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(0).getStoreImg());
+        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(1).getStoreImg());
+        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(2).getStoreImg());
+        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(3).getStoreImg());
+        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(4).getStoreImg());
 
 //        try {
 //            storeList = call.execute().body();

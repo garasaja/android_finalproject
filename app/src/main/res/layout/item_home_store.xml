@@ -39,27 +39,27 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
-            android:layout_alignRight="@id/home_star"
-            android:text="거리"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/text2"-->
+<!--            android:layout_width="75dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/store_intro"-->
+<!--            android:layout_alignRight="@id/home_star"-->
+<!--            android:text="거리"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
 
-        <TextView
-            android:id="@+id/home_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
-            android:layout_alignRight="@id/text2"
-            android:text="15m"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+<!--        <TextView-->
+<!--            android:id="@+id/home_location"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/store_intro"-->
+<!--            android:layout_alignRight="@id/text2"-->
+<!--            android:text="15m"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
 
         <TextView
             android:id="@+id/home_title"
