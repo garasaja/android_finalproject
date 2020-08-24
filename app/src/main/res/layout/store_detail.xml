@@ -17,7 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitXY"
-        android:src="@drawable/cafe1"/>
+        android:src="@drawable/storedetailimage"/>
+
+    <TextView
+        android:id="@+id/store_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="코드네임블랙 부산점"
+        android:textSize="30sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -33,6 +40,7 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
+        android:id="@+id/store_detail_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="남포동 1등 방탈출 코드네임블랙 부산점입니다."/>
@@ -58,7 +66,7 @@
         android:layout_marginTop="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_detail_theme"
+        android:id="@+id/rv_store_detail_theme"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="horizontal"/>

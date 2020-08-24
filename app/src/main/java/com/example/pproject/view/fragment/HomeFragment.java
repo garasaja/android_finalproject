@@ -1,7 +1,6 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,38 +9,36 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pproject.RetrofitService;
+import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.model.Store;
 import com.example.pproject.adapter.HomeStoreAdapter;
 import com.example.pproject.model.Hometheme;
-import com.example.pproject.adapter.HomethemeAdapter;
+import com.example.pproject.adapter.HomeThemeAdapter;
 import com.example.pproject.R;
-import com.example.pproject.view.MainActivity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.pproject.model.Theme;
+import com.example.pproject.viewmodel.HomeViewModel;
+import com.example.pproject.viewmodel.StoreViewModel;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment {
     private static final String TAG = "Home";
     private RecyclerView rvHomeStore,rvHometheme;
     private HomeStoreAdapter homeStoreAdapter;
+    private HomeThemeAdapter homeThemeAdapter;
     private CarouselView carouselView;
+    private HomeViewModel homeViewModel1 ,homeViewModel2;
 
     private List<Store> storeList = new ArrayList<>();
+    private List<Theme> themeList = new ArrayList<>();
    // private ImageView storeIntro;
 
     int[] carrouselImage = {R.drawable.main1, R.drawable.main2, R.drawable.main3};
@@ -53,63 +50,58 @@ public class HomeFragment extends Fragment {
 
         rvHomeStore = rootView.findViewById(R.id.rv_home_store);
         rvHometheme = rootView.findViewById(R.id.rv_home_theme);
-        carouselView = (CarouselView) rootView.findViewById(R.id.carouselView);
+        carouselView = rootView.findViewById(R.id.carouselView);
 
-
-
-//        homeStoreAdapter.addItem(new Store(R.drawable.cafe1));
-//        homeStoreAdapter.addItem(new Store(R.drawable.main2));
-//        homeStoreAdapter.addItem(new Store(R.drawable.main3));
-//        homeStoreAdapter.addItem(new Store(R.drawable.main1));
-//        homeStoreAdapter.addItem(new Store(R.drawable.main2));
-//        homeStoreAdapter.addItem(new Store(R.drawable.main3));
-
-
-        //rvHomeStore.setAdapter(homeStoreAdapter);
-
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.21:8080/")
-                //.baseUrl("http://222.234.36.82:58003/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-
-        final Call <List<Store>> call = retrofitService.스토어목록가져오기();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    storeList = call.execute().body();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    storeList = call.execute().body();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         //리사이클러뷰에 연결
         homeStoreAdapter = new HomeStoreAdapter();
         rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        homeStoreAdapter.addItems(storeList);
         rvHomeStore.setAdapter(homeStoreAdapter);
-        Log.d(TAG, "onResponse: rvHomeStore" + rvHomeStore);
 
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(0).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(1).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(2).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(3).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(4).getStoreImg());
+        homeViewModel1 = ViewModelProviders.of(this).get(HomeViewModel.class);
+
+        homeViewModel1.subscribe1().observe(this, new Observer<List<Store>>() {
+            @Override
+            public void onChanged(List<Store> storeList) {
+                homeStoreAdapter.addItems(storeList);
+                homeStoreAdapter.notifyDataSetChanged();
+            }
+        });
+
+        homeViewModel1.initLiveData1();
+
+        //리사이클러뷰에 연결
+        homeThemeAdapter = new HomeThemeAdapter();
+        rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        rvHometheme.setAdapter(homeThemeAdapter);
+
+        homeViewModel2 = ViewModelProviders.of(this).get(HomeViewModel.class);
+
+        homeViewModel2.subscribe2().observe(this, new Observer<List<Theme>>() {
+            @Override
+            public void onChanged(List<Theme> themeList) {
+                homeThemeAdapter.addItems(themeList);
+                homeThemeAdapter.notifyDataSetChanged();
+            }
+        });
+
+        homeViewModel2.initLiveData2();
 
 //        try {
 //            storeList = call.execute().body();
@@ -185,24 +177,11 @@ public class HomeFragment extends Fragment {
 //        Log.d(TAG, "onResponse: rvHomeStore" + rvHomeStore);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        HomethemeAdapter homethemeAdapter = new HomethemeAdapter();
-        homethemeAdapter.addItem(new Hometheme(R.drawable.cafe1));
-        homethemeAdapter.addItem(new Hometheme(R.drawable.main2));
-        homethemeAdapter.addItem(new Hometheme(R.drawable.main3));
-        homethemeAdapter.addItem(new Hometheme(R.drawable.main1));
-        homethemeAdapter.addItem(new Hometheme(R.drawable.main2));
-        homethemeAdapter.addItem(new Hometheme(R.drawable.main3));
 
-        rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        rvHometheme.setAdapter(homethemeAdapter);
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         carouselView.setPageCount(carrouselImage.length);
-
         carouselView.setImageListener(imageListener);
-
-
-
 
         return rootView;
     } // oncreate view 끝나는곳
@@ -213,6 +192,4 @@ public class HomeFragment extends Fragment {
             imageView.setImageResource(carrouselImage[position]);
         }
     };
-
-
 }

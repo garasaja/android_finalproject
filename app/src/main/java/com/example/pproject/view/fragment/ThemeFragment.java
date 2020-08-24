@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,8 @@ import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.adapter.ThemeAdapter;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
+import com.example.pproject.viewmodel.StoreViewModel;
+import com.example.pproject.viewmodel.ThemeViewModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -37,6 +41,7 @@ public class ThemeFragment extends Fragment {
     private RecyclerView rvTheme;
     private ThemeAdapter themeAdapter;
     private ImageButton favorite_btn;
+    private ThemeViewModel themeViewModel;
     private List<Theme> themeList = new ArrayList<>();
     @Nullable
     @Override
@@ -47,48 +52,41 @@ public class ThemeFragment extends Fragment {
         favorite_btn = rootView.findViewById(R.id.theme_favorite_btn);
 
         /////////////////////////////
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.21:8080/")
-                //.baseUrl("http://222.234.36.82:58003/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
 
-        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    themeList = call.execute().body();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
-        final Call<List<Theme>> call = retrofitService.테마목록가져오기();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    themeList = call.execute().body();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         //리사이클러뷰에 연결
         themeAdapter = new ThemeAdapter();
-        rvTheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        themeAdapter.addItems(themeList);
-        rvTheme.setAdapter(themeAdapter);
-
-        /////////////////////////////
-
-
         rvTheme.setLayoutManager(new GridLayoutManager(getContext(), 2));
         rvTheme.setAdapter(themeAdapter);
+
+        themeViewModel = ViewModelProviders.of(this).get(ThemeViewModel.class);
+        themeViewModel.subscribe().observe(this, new Observer<List<Theme>>() {
+            @Override
+            public void onChanged(List<Theme> themes) {
+                themeAdapter.addItems(themeList);
+                themeAdapter.notifyDataSetChanged();
+            }
+        });
+
+        themeViewModel.initLiveData();
 
         return  rootView;
     }

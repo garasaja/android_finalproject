@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ import com.example.pproject.adapter.HomeStoreAdapter;
 import com.example.pproject.R;
 import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.model.Store;
+import com.example.pproject.viewmodel.StoreViewModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -33,6 +36,7 @@ public class StoreFragment extends Fragment {
     private RecyclerView rvStore;
     private StoreAdapter storeAdapter;
     private List<Store> storeList = new ArrayList<>();
+    private StoreViewModel storeViewModel;
 
     @Nullable
     @Override
@@ -41,43 +45,40 @@ public class StoreFragment extends Fragment {
 
         rvStore = rootView.findViewById(R.id.rv_store);
 
-        /////////////////////////////
-        Gson gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.21:8080/")
-                //.baseUrl("http://222.234.36.82:58003/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-
-        final Call<List<Store>> call = retrofitService.스토어목록가져오기();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    storeList = call.execute().body();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    storeList = call.execute().body();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//        try {
+//            Thread.sleep(3000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
         //리사이클러뷰에 연결
         storeAdapter = new StoreAdapter();
         rvStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        storeAdapter.addItems(storeList);
         rvStore.setAdapter(storeAdapter);
+
+        storeViewModel = ViewModelProviders.of(this).get(StoreViewModel.class);
+
+        storeViewModel.subscribe().observe(this, new Observer<List<Store>>() {
+            @Override
+            public void onChanged(List<Store> stores) {
+                storeAdapter.addItems(storeList);
+                storeAdapter.notifyDataSetChanged();
+            }
+        });
+
+        storeViewModel.initLiveData();
+
         Log.d(TAG, "onResponse: rvStore" + rvStore);
 
         Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(0).getStoreImg());
@@ -85,9 +86,6 @@ public class StoreFragment extends Fragment {
         Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(2).getStoreImg());
         Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(3).getStoreImg());
         Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(4).getStoreImg());
-        /////////////////////////////
-
-
 
 
         return  rootView;

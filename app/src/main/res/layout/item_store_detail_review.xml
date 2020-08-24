@@ -10,7 +10,7 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/review_id"
+            android:id="@+id/store_detail_review_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="아이디"
@@ -19,33 +19,41 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:id="@+id/review_day"
+            android:id="@+id/store_detail_review_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/review_id"
+            android:layout_below="@id/store_detail_review_id"
             android:text="20200714날짜 "
 
             android:textSize="15sp" />
 
-        <RatingBar
-            android:id="@+id/review_ratingBar"
+        <TextView
+            android:id="@+id/store_detail_review_point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"/>
+            android:text="5"
+            android:textSize="20sp"
+            android:layout_alignParentEnd="true"/>
+
+<!--        <RatingBar-->
+<!--            android:id="@+id/review_ratingBar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            style="@style/Widget.AppCompat.RatingBar.Indicator"/>-->
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            android:layout_below="@id/review_day"
+            android:layout_below="@id/store_detail_review_day"
             android:layout_marginTop="5dp"/>
 
         <TextView
-            android:id="@+id/review_content"
+            android:id="@+id/store_detail_review_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/review_day"
+            android:layout_below="@id/store_detail_review_day"
             android:text="리뷰를 적는곳입니다."
             android:layout_marginTop="10dp"/>
     </RelativeLayout>
