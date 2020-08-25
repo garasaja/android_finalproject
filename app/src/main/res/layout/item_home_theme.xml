@@ -10,7 +10,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/store_intro"
+            android:id="@+id/theme_image"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:scaleType="fitXY"
@@ -20,7 +20,7 @@
             android:id="@+id/text1"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
+            android:layout_below="@id/theme_image"
             android:text="★ "
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -28,10 +28,10 @@
 
         <TextView
 
-            android:id="@+id/home_star"
+            android:id="@+id/theme_point"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
+            android:layout_below="@id/theme_image"
             android:layout_alignRight="@id/text1"
 
             android:text=" 4.8"
@@ -43,18 +43,18 @@
             android:id="@+id/text2"
             android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
-            android:layout_alignRight="@id/home_star"
+            android:layout_below="@id/theme_image"
+            android:layout_alignRight="@id/theme_point"
             android:text="난이도"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/home_location"
+            android:id="@+id/theme_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
+            android:layout_below="@id/theme_image"
             android:layout_alignRight="@id/text2"
             android:text="5"
             android:textColor="@android:color/black"
@@ -62,10 +62,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/home_title"
+            android:id="@+id/theme_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/home_star"
+            android:layout_below="@id/theme_point"
             android:textStyle="bold"
             android:text="비밀의 화원" />
     </RelativeLayout>

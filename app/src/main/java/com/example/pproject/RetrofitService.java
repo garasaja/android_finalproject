@@ -4,6 +4,7 @@ import com.example.pproject.model.NoticeBoard;
 import com.example.pproject.model.Review;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
+import com.example.pproject.model.dto.IndexRespDto;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -20,14 +21,16 @@ import retrofit2.http.Query;
 
 public interface RetrofitService {
 
-    @GET("")
-    Call<List<Store>> 홈스토어목록가져오기(
-            @Query("sort_by") String sort_by, // query안에 sortby가 key 뒤에가 value
-            @Query("limit") int limit
-    );
+    @GET("/index")
+    Call<IndexRespDto> 홈스토어테마리스트가져오기();
+//    Call<List<Store>> 홈스토어목록가져오기(
+////            @Query("sort_by") String sort_by, // query안에 sortby가 key 뒤에가 value
+////            @Query("limit") int limit
+//    );
+//    Call<List<Theme>> 홈테마목록가져오기();
 
-    @GET("")
-    Call<List<Theme>> 홈테마목록가져오기();
+
+
 
     @GET("store")
     Call <List<Store>> 스토어목록가져오기();
@@ -36,7 +39,7 @@ public interface RetrofitService {
     Call <List<Theme>> 테마목록가져오기();
 
     @GET("store/{id}")
-    Call<Store> 스토어디테일테마보기(@Path(value = "id", encoded = true) int id);
+    Call<Store> 스토어디테일보기(@Path(value = "id", encoded = true) int id);
 
     @GET("store/{id}")
     Call<List<Review>> 스토어디테일리뷰보기(@Path(value = "id", encoded = true) int id);

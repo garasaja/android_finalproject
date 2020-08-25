@@ -2,6 +2,7 @@ package com.example.pproject.adapter;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.R;
 import com.example.pproject.model.Store;
+import com.example.pproject.model.dto.IndexRespDto;
 import com.example.pproject.view.DetailStoreActivity;
 import com.example.pproject.view.fragment.HomeFragment;
 import com.squareup.picasso.Picasso;
@@ -23,6 +25,7 @@ import java.util.List;
 public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyViewHolder> {
     private static final String TAG = "HomeStoreAdapter";
     private List<Store> storeList = new ArrayList<>();
+    private IndexRespDto indexRespDto = new IndexRespDto();
     private HomeFragment homeFragment;
 
     public HomeStoreAdapter() {
@@ -43,6 +46,7 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
 
 
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,9 +63,9 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
 //        holder.homeLocation.setText(store.getLocation()+"");
         holder.homeStar.setText(Float.toString(store.getRating()/2));
         holder.hometitle.setText(store.getName());
-        Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.storeImage);
-   //     Picasso.get().load(store.getStoreImg()).into(holder.storeImage);
-
+    //    Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.storeImage);
+       Picasso.get().load(store.getStoreImg().replace("localhost","192.168.0.21")).into(holder.storeImage);
+        Log.d(TAG, "onBindViewHolder: " + store.getStoreImg());
 
     }
 
@@ -74,16 +78,16 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView storeImage;
-        private TextView homeStar, homeLocation, hometitle;
+        private TextView homeStar, hometitle;
 
 
         public MyViewHolder(final View itemView) {
             super(itemView);
 
             hometitle = itemView.findViewById(R.id.home_title);
-            storeImage = itemView.findViewById(R.id.store_intro);
+            storeImage = itemView.findViewById(R.id.store_image);
             homeStar = itemView.findViewById(R.id.home_star);
-            homeLocation = itemView.findViewById(R.id.home_location);
+            //homeLocation = itemView.findViewById(R.id.home_location);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

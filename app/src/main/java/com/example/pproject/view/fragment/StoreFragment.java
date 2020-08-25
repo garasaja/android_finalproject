@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.RetrofitService;
-import com.example.pproject.adapter.HomeStoreAdapter;
+//import com.example.pproject.adapter.HomeStoreAdapter;
 import com.example.pproject.R;
 import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.model.Store;
@@ -71,7 +71,7 @@ public class StoreFragment extends Fragment {
 
         storeViewModel.subscribe().observe(this, new Observer<List<Store>>() {
             @Override
-            public void onChanged(List<Store> stores) {
+            public void onChanged(List<Store> storeList) {
                 storeAdapter.addItems(storeList);
                 storeAdapter.notifyDataSetChanged();
             }
@@ -79,13 +79,13 @@ public class StoreFragment extends Fragment {
 
         storeViewModel.initLiveData();
 
-        Log.d(TAG, "onResponse: rvStore" + rvStore);
-
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(0).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(1).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(2).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(3).getStoreImg());
-        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(4).getStoreImg());
+//        Log.d(TAG, "onResponse: rvStore" + rvStore);
+//
+//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(0).getStoreImg());
+//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(1).getStoreImg());
+//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(2).getStoreImg());
+//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(3).getStoreImg());
+//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(4).getStoreImg());
 
 
         return  rootView;

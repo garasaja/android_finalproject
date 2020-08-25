@@ -56,11 +56,13 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Theme theme = themeList.get(position);
-        holder.themeLevel.setText(theme.getLevel());
+        holder.themeLevel.setText(Integer.toString(theme.getLevel()));
+        Log.d(TAG, "onBindViewHolder: "+theme.getName());
         holder.themeTitle.setText(theme.getName());
-        holder.themePoint.setText(theme.getRating()/2);
-        Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.themeImage);
-        //     Picasso.get().load(theme.getThemeImg()).into(holder.themeImage);
+        holder.themePoint.setText(Float.toString(theme.getRating()/2));
+////        holder.themePoint.setText(theme.getRating()/2);
+      //  Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.themeImage);
+       Picasso.get().load(theme.getThemeImg().replace("localhost","192.168.0.21")).into(holder.themeImage);
     }
 
     @Override
@@ -75,12 +77,12 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
         private TextView themeLevel;
         private TextView themeTitle;
 
-        private ImageView storeIntro;
+//        private ImageView storeIntro;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            storeIntro = itemView.findViewById(R.id.store_intro);
+//            storeIntro = itemView.findViewById(R.id.store_intro);
 
             themeImage = itemView.findViewById(R.id.theme_image);
             themePoint =  itemView.findViewById(R.id.theme_point);

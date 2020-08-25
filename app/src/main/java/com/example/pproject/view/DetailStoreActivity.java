@@ -26,7 +26,7 @@ import java.util.List;
 
 public class DetailStoreActivity extends AppCompatActivity {
     private static final String TAG = "DetailStore";
-    private Button call,btnReserve;
+    private Button call,btnReserve , back;
     private TextView storeDetailTitle , storeDetailIntro;
     private StoreDetailThemeAdapter storeDetailThemeAdapter;
     private RecyclerView rvDetailStoreTheme, rvDetailStoreReview;
@@ -44,6 +44,10 @@ public class DetailStoreActivity extends AppCompatActivity {
         rvDetailStoreTheme = findViewById(R.id.rv_store_detail_theme);
         rvDetailStoreReview = findViewById(R.id.rv_detail_review);
 
+        Intent intent = getIntent();
+        intent.getStringExtra("storeId");
+        storeDetailTitle.setText(Integer.toString(getIntent().getIntExtra("storeId",0)));
+
         //리사이클러뷰에 연결
         storeDetailThemeAdapter =  new StoreDetailThemeAdapter();
         rvDetailStoreTheme.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
@@ -51,20 +55,23 @@ public class DetailStoreActivity extends AppCompatActivity {
 
         storeDetailViewModel = ViewModelProviders.of(this).get(StoreDetailViewModel.class);
 
-        storeDetailViewModel.subscribe1().observe(this, new Observer<List<Store>>() {
+        storeDetailViewModel.subscribe1().observe(this, new Observer<Store>() {
             @Override
-            public void onChanged(List<Store> storeList) {
+            public void onChanged(Store store) {
+                storeDetailTitle.setText(store.getName());
+                storeDetailIntro.setText(store.getInfo());
 
             }
         });
 
-        storeDetailViewModel.subscribe1().observe(this, new Observer<List<Store>>() {
-            @Override
-            public void onChanged(List<Theme> storeList) {
-                storeDetailThemeAdapter.addItems(storeList);
-                storeDetailThemeAdapter.notifyDataSetChanged();
-            }
-        });
+//
+//        storeDetailViewModel.subscribe1().observe(this, new Observer<List<Store>>() {
+//            @Override
+//            public void onChanged(List<Theme> storeList) {
+//                storeDetailThemeAdapter.addItems(storeList);
+//                storeDetailThemeAdapter.notifyDataSetChanged();
+//            }
+//        });
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +86,14 @@ public class DetailStoreActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(DetailStoreActivity.this, CalendarActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

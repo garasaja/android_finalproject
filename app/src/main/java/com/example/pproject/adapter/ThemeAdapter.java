@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pproject.R;
 import com.example.pproject.model.Theme;
 import com.example.pproject.view.DetailStoreActivity;
-import com.example.pproject.view.fragment.HomeFragment;
+//import com.example.pproject.view.fragment.HomeFragment;
 import com.example.pproject.view.fragment.ThemeFragment;
 import com.squareup.picasso.Picasso;
 
@@ -30,7 +30,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
         this.themeFragment = themeFragment;
     }
 
-    public ThemeAdapter(HomeFragment homeFragment) {
+    public ThemeAdapter(ThemeFragment themeFragment) {
         this.themeFragment = themeFragment;
     }
 
@@ -38,7 +38,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
         themeList.add(theme);
     }
 
-    public void addItems(List<Theme> storeList) {
+    public void addItems(List<Theme> themeList) {
         this.themeList = themeList;
     }
 
@@ -58,10 +58,10 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Theme theme = themeList.get(position);
 //        holder.homeLocation.setText(store.getLocation()+"");
-        holder.tvPoint.setText(Float.toString(theme.getRating()/2));
+        holder.tvPoint.setText(Integer.toString(theme.getRating()/2));
         holder.tvTitle.setText(theme.getName());
-        Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.ivThemeImage);
-   //     Picasso.get().load(store.getStoreImg()).into(holder.storeImage);
+   //     Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.ivThemeImage);
+       Picasso.get().load(theme.getThemeImg().replace("localhost","192.168.0.21")).into(holder.ivThemeImage);
 
 
 
@@ -77,7 +77,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
 
         private ImageView ivThemeImage;
         private TextView tvPoint, tvTitle;
-        private Button btnFavorite;
+       // private Button btnFavorite;
 
 
         public MyViewHolder(final View itemView) {
@@ -86,7 +86,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
             ivThemeImage = itemView.findViewById(R.id.theme_image);
             tvPoint = itemView.findViewById(R.id.theme_point);
             tvTitle = itemView.findViewById(R.id.theme_title);
-            btnFavorite = itemView.findViewById(R.id.store_favorite_btn);
+            //btnFavorite = itemView.findViewById(R.id.store_favorite_btn);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

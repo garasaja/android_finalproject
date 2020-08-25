@@ -1,6 +1,8 @@
 package com.example.pproject.adapter;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pproject.R;
 import com.example.pproject.model.Store;
 import com.example.pproject.view.DetailStoreActivity;
-import com.example.pproject.view.fragment.HomeFragment;
+//import com.example.pproject.view.fragment.HomeFragment;
 import com.example.pproject.view.fragment.StoreFragment;
 import com.squareup.picasso.Picasso;
 
@@ -30,7 +32,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         this.storeFragment = storeFragment;
     }
 
-    public StoreAdapter(HomeFragment homeFragment) {
+    public StoreAdapter(StoreFragment storeFragment) {
         this.storeFragment = storeFragment;
     }
 
@@ -58,10 +60,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Store store = storeList.get(position);
 //        holder.homeLocation.setText(store.getLocation()+"");
+        holder.setStore(store);
         holder.tvPoint.setText(Float.toString(store.getRating()/2));
         holder.tvTitle.setText(store.getName());
-        Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.ivStoreImage);
-   //     Picasso.get().load(store.getStoreImg()).into(holder.storeImage);
+     //   Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.ivStoreImage);
+       Picasso.get().load(store.getStoreImg().replace("localhost","192.168.0.21")).into(holder.ivStoreImage);
+
+
 
 
 
@@ -75,10 +80,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
+        private Store store;
         private ImageView ivStoreImage;
         private TextView tvPoint, tvTitle;
         private Button btnFavorite;
 
+        public void setStore(Store store) {
+            this.store = store;
+        }
 
         public MyViewHolder(final View itemView) {
             super(itemView);
@@ -92,7 +101,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), DetailStoreActivity.class);
-
+                    intent.putExtra("storeId", store.getId());
                     v.getContext().startActivity(intent);
                 }
             });

@@ -24,7 +24,7 @@ public class StoreDetailRepository {
 
     Retrofit retrofit;
 
-    private MutableLiveData <List<Store>> mutableLiveData1;
+    private MutableLiveData <Store> mutableLiveData1;
     private MutableLiveData <List<Review>> mutableLiveData2;
 
     public StoreDetailRepository() {
@@ -33,7 +33,7 @@ public class StoreDetailRepository {
         mutableLiveData2 = new MutableLiveData<>();
     }
 
-    public LiveData<List<Theme>> initData1() {
+    public LiveData<Store> initData1() {
         return mutableLiveData1;
     }
     public LiveData<List<Review>> initData2() {
@@ -42,20 +42,21 @@ public class StoreDetailRepository {
 
     public void getStore(int id) {
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<List<Store>> call = retrofitService.(id);
+        Call<Store> call = retrofitService.스토어디테일보기(id);
 
-        call.enqueue(new Callback<List<Store>>() {
+        call.enqueue(new Callback<Store>() {
             @Override
-            public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
-                List<Store> storeList = response.body();
-                mutableLiveData1.setValue(storeList);
+            public void onResponse(Call<Store> call, Response<Store> response) {
+                Store store = response.body();
+                mutableLiveData1.setValue(store);
             }
 
             @Override
-            public void onFailure(Call<List<Store>> call, Throwable t) {
+            public void onFailure(Call<Store> call, Throwable t) {
                 Log.d(TAG, "onFailure: 실패오류 원인은 : " + t.getMessage());
             }
         });
+
     }
 
     public void getReview(int id) {

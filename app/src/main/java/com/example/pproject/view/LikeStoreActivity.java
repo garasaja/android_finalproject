@@ -13,7 +13,7 @@ import com.example.pproject.R;
 
 public class LikeStoreActivity extends AppCompatActivity {
 
-    Button back;
+    private Button back;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

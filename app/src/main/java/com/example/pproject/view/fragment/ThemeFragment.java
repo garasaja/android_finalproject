@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.RetrofitService;
-import com.example.pproject.adapter.HomeStoreAdapter;
 import com.example.pproject.R;
 import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.adapter.ThemeAdapter;
@@ -80,7 +79,7 @@ public class ThemeFragment extends Fragment {
         themeViewModel = ViewModelProviders.of(this).get(ThemeViewModel.class);
         themeViewModel.subscribe().observe(this, new Observer<List<Theme>>() {
             @Override
-            public void onChanged(List<Theme> themes) {
+            public void onChanged(List<Theme> themeList) {
                 themeAdapter.addItems(themeList);
                 themeAdapter.notifyDataSetChanged();
             }

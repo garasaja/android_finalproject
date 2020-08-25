@@ -1,6 +1,7 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.example.pproject.model.Hometheme;
 import com.example.pproject.adapter.HomeThemeAdapter;
 import com.example.pproject.R;
 import com.example.pproject.model.Theme;
+import com.example.pproject.model.dto.IndexRespDto;
 import com.example.pproject.viewmodel.HomeViewModel;
 import com.example.pproject.viewmodel.StoreViewModel;
 import com.synnapps.carouselview.CarouselView;
@@ -35,10 +37,11 @@ public class HomeFragment extends Fragment {
     private HomeStoreAdapter homeStoreAdapter;
     private HomeThemeAdapter homeThemeAdapter;
     private CarouselView carouselView;
-    private HomeViewModel homeViewModel1 ,homeViewModel2;
+    private HomeViewModel homeViewModel1 ,homeViewModel2 , homeViewModel3;
 
     private List<Store> storeList = new ArrayList<>();
     private List<Theme> themeList = new ArrayList<>();
+    private List<IndexRespDto> indexRespDtoList = new ArrayList<>();
    // private ImageView storeIntro;
 
     int[] carrouselImage = {R.drawable.main1, R.drawable.main2, R.drawable.main3};
@@ -69,39 +72,68 @@ public class HomeFragment extends Fragment {
 //            e.printStackTrace();
 //        }
 
-        //리사이클러뷰에 연결
         homeStoreAdapter = new HomeStoreAdapter();
         rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         rvHomeStore.setAdapter(homeStoreAdapter);
+        homeStoreAdapter.addItems(new ArrayList<Store>());
 
-        homeViewModel1 = ViewModelProviders.of(this).get(HomeViewModel.class);
 
-        homeViewModel1.subscribe1().observe(this, new Observer<List<Store>>() {
-            @Override
-            public void onChanged(List<Store> storeList) {
-                homeStoreAdapter.addItems(storeList);
-                homeStoreAdapter.notifyDataSetChanged();
-            }
-        });
-
-        homeViewModel1.initLiveData1();
-
-        //리사이클러뷰에 연결
         homeThemeAdapter = new HomeThemeAdapter();
         rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         rvHometheme.setAdapter(homeThemeAdapter);
+        homeThemeAdapter.addItems(new ArrayList<Theme>());
 
-        homeViewModel2 = ViewModelProviders.of(this).get(HomeViewModel.class);
-
-        homeViewModel2.subscribe2().observe(this, new Observer<List<Theme>>() {
+        homeViewModel3 = ViewModelProviders.of(this).get(HomeViewModel.class);
+        homeViewModel3.subscribe3().observe(this, new Observer<IndexRespDto>() {
             @Override
-            public void onChanged(List<Theme> themeList) {
-                homeThemeAdapter.addItems(themeList);
+            public void onChanged(IndexRespDto indexRespDto) {
+
+//                for (Theme theme : indexRespDto.getThemes()){
+//                    Log.d(TAG, "onChanged: "+theme.getName());
+//                }
+
+                homeStoreAdapter.addItems(indexRespDto.getStores());
+                homeStoreAdapter.notifyDataSetChanged();
+                homeThemeAdapter.addItems(indexRespDto.getThemes());
                 homeThemeAdapter.notifyDataSetChanged();
             }
         });
+        homeViewModel3.initLiveData3();
 
-        homeViewModel2.initLiveData2();
+//        //리사이클러뷰에 연결
+//        homeStoreAdapter = new HomeStoreAdapter();
+//        rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+//        rvHomeStore.setAdapter(homeStoreAdapter);
+//
+//        homeViewModel1 = ViewModelProviders.of(this).get(HomeViewModel.class);
+//
+//        homeViewModel1.subscribe1().observe(this, new Observer<List<Store>>() {
+//            @Override
+//            public void onChanged(List<Store> storeList) {
+//                homeStoreAdapter.addItems(storeList);
+//                homeStoreAdapter.notifyDataSetChanged();
+//
+//            }
+//        });
+//
+//        homeViewModel1.initLiveData1();
+//
+//        //리사이클러뷰에 연결
+//        homeThemeAdapter = new HomeThemeAdapter();
+//        rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+//        rvHometheme.setAdapter(homeThemeAdapter);
+//
+//        homeViewModel2 = ViewModelProviders.of(this).get(HomeViewModel.class);
+//
+//        homeViewModel2.subscribe2().observe(this, new Observer<List<Theme>>() {
+//            @Override
+//            public void onChanged(List<Theme> themeList) {
+//                homeThemeAdapter.addItems(themeList);
+//                homeThemeAdapter.notifyDataSetChanged();
+//            }
+//        });
+//
+//        homeViewModel2.initLiveData2();
 
 //        try {
 //            storeList = call.execute().body();

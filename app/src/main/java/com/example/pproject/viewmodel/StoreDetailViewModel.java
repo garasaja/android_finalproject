@@ -14,7 +14,7 @@ import java.util.List;
 
 public class StoreDetailViewModel extends AndroidViewModel {
 
-    private LiveData<List<Theme>> listLiveData1;
+    private LiveData<Store> listLiveData1;
     private LiveData<List<Review>> listLiveData2;
     private StoreDetailRepository storeDetailRepository;
 
@@ -32,7 +32,7 @@ public class StoreDetailViewModel extends AndroidViewModel {
         storeDetailRepository.getReview(id);
     }
 
-    public LiveData<List<Store>> subscribe1() {
+    public LiveData<Store> subscribe1() {
         return listLiveData1;
     }
     public LiveData<List<Review>> subscribe2() {

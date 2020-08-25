@@ -22,32 +22,45 @@ public class ThemeDetailRepository {
 
     Retrofit retrofit;
 
-    private MutableLiveData <List<Theme>> mutableLiveData;
+    private MutableLiveData <Theme> mutableLiveData;
 
     public ThemeDetailRepository() {
         retrofit = RetrofitHelper.getRetrofit();
         mutableLiveData = new MutableLiveData<>();
     }
 
-    public LiveData<List<Theme>> initData() {
+    public LiveData<Theme> initData() {
         return mutableLiveData;
     }
 
     public void getTheme(int id) {
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<List<Theme>> call = retrofitService.테마디테일목록보기(id);
+        Call<Theme> call = retrofitService.테마디테일보기(id);
 
-        call.enqueue(new Callback<List<Theme>>() {
+        call.enqueue(new Callback<Theme>() {
             @Override
-            public void onResponse(Call<List<Theme>> call, Response<List<Theme>> response) {
-                List<Theme> themeList = response.body();
-                mutableLiveData.setValue(themeList);
+            public void onResponse(Call<Theme> call, Response<Theme> response) {
+                Theme theme = response.body();
+                mutableLiveData.setValue(theme);
             }
 
             @Override
-            public void onFailure(Call<List<Theme>> call, Throwable t) {
+            public void onFailure(Call<Theme> call, Throwable t) {
                 Log.d(TAG, "onFailure: 실패오류 원인은 : " + t.getMessage());
             }
         });
+
+//        call.enqueue(new Callback<List<Theme>>() {
+//            @Override
+//            public void onResponse(Call<List<Theme>> call, Response<List<Theme>> response) {
+//                List<Theme> themeList = response.body();
+//                mutableLiveData.setValue(themeList);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Theme>> call, Throwable t) {
+//                Log.d(TAG, "onFailure: 실패오류 원인은 : " + t.getMessage());
+//            }
+//        });
     }
 }

@@ -10,7 +10,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/store_intro"
+            android:id="@+id/store_image"
             android:layout_width="250dp"
             android:layout_height="120dp"
             android:scaleType="fitXY"
@@ -20,7 +20,7 @@
             android:id="@+id/text1"
             android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
+            android:layout_below="@id/store_image"
             android:text="★ "
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -31,7 +31,7 @@
             android:id="@+id/home_star"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/store_intro"
+            android:layout_below="@id/store_image"
             android:layout_alignRight="@id/text1"
 
             android:text=" 4.8"
