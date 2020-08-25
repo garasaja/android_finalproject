@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,18 +16,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.R;
 import com.example.pproject.adapter.StoreDetailThemeAdapter;
-import com.example.pproject.model.Store;
-import com.example.pproject.viewmodel.storedetail.StoreDetailViewModel;
+import com.example.pproject.model.Theme;
+import com.example.pproject.viewmodel.themedetail.ThemeDetailViewModel;
+import com.squareup.picasso.Picasso;
 
-public class DetailStoreActivity extends AppCompatActivity {
+public class DetailThemeActivity extends AppCompatActivity {
     private static final String TAG = "DetailStore";
-    private Button call,btnReserve , back;
-    private TextView storeDetailTitle , storeDetailIntro;
+    private Button call,btnReserve , back, btnThemeDetailReview;
+    private TextView tvThemeDetailTitle , tvThemeDetailIntro;
     private StoreDetailThemeAdapter storeDetailThemeAdapter;
     private RecyclerView rvDetailStoreTheme, rvDetailStoreReview;
-    private StoreDetailViewModel storeDetailViewModel;
+    private ThemeDetailViewModel themeDetailViewModel;
+    private ImageView ivDetailThemeImage;
 
-    private int storeId;
+    private int themeId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,13 +38,13 @@ public class DetailStoreActivity extends AppCompatActivity {
 
         call = findViewById(R.id.call);
         btnReserve = findViewById(R.id.btn_reserve);
-        storeDetailTitle = findViewById(R.id.store_detail_title);
-        storeDetailIntro = findViewById(R.id.store_detail_intro);
-        rvDetailStoreTheme = findViewById(R.id.rv_store_detail_theme);
-        rvDetailStoreReview = findViewById(R.id.rv_detail_review);
+        btnThemeDetailReview = findViewById(R.id.btn_theme_detail_review);
+        ivDetailThemeImage = findViewById(R.id.iv_detail_theme_image);
+        tvThemeDetailTitle = findViewById(R.id.tv_theme_detail_title);
+        tvThemeDetailIntro = findViewById(R.id.tv_theme_detail_intro);
 
         Intent intent = getIntent();
-        storeId =  intent.getIntExtra("storeId",0);
+        themeId =  intent.getIntExtra("themeId",0);
        // storeDetailTitle.setText(Integer.toString(getIntent().getIntExtra("storeId",0)));
 
         //리사이클러뷰에 연결
@@ -49,17 +52,17 @@ public class DetailStoreActivity extends AppCompatActivity {
        // rvDetailStoreTheme.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
        // rvDetailStoreTheme.setAdapter(storeDetailThemeAdapter);
 
-        storeDetailViewModel = ViewModelProviders.of(this).get(StoreDetailViewModel.class);
+        themeDetailViewModel = ViewModelProviders.of(this).get(ThemeDetailViewModel.class);
 
-        storeDetailViewModel.subscribe1().observe(this, new Observer<Store>() {
+        themeDetailViewModel.subscribe().observe(this, new Observer<Theme>() {
             @Override
-            public void onChanged(Store store) {
-                storeDetailTitle.setText(store.getName());
-                storeDetailIntro.setText(store.getInfo());
-
+            public void onChanged(Theme theme) {
+                tvThemeDetailTitle.setText(theme.getName());
+                tvThemeDetailIntro.setText(theme.getIntro());
+                Picasso.get().load(theme.getThemeImg()).into(ivDetailThemeImage);
             }
         });
-        storeDetailViewModel.initLiveData1(storeId);
+        themeDetailViewModel.initLiveData(themeId);
 
 //
 //        storeDetailViewModel.subscribe1().observe(this, new Observer<List<Store>>() {
@@ -81,7 +84,7 @@ public class DetailStoreActivity extends AppCompatActivity {
         btnReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailStoreActivity.this, CalendarActivity.class);
+                Intent intent = new Intent(DetailThemeActivity.this, CalendarActivity.class);
                 startActivity(intent);
             }
         });

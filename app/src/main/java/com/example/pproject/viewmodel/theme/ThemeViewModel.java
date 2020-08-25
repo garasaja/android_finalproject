@@ -1,4 +1,4 @@
-package com.example.pproject.viewmodel;
+package com.example.pproject.viewmodel.theme;
 
 import android.app.Application;
 
@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
 
 import java.util.List;

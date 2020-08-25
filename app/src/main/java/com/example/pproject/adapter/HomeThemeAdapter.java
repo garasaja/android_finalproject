@@ -1,5 +1,6 @@
 package com.example.pproject.adapter;
 
+import android.content.Intent;
 import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import com.example.pproject.R;
 import com.example.pproject.model.Hometheme;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
+import com.example.pproject.view.DetailStoreActivity;
+import com.example.pproject.view.DetailThemeActivity;
 import com.example.pproject.view.fragment.HomeFragment;
 import com.squareup.picasso.Picasso;
 
@@ -76,10 +79,10 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
         private TextView themePoint;
         private TextView themeLevel;
         private TextView themeTitle;
-
+        private Theme theme;
 //        private ImageView storeIntro;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull final View itemView) {
             super(itemView);
 
 //            storeIntro = itemView.findViewById(R.id.store_intro);
@@ -89,6 +92,16 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
             themeLevel =  itemView.findViewById(R.id.theme_level);
             themeTitle =  itemView.findViewById(R.id.theme_title);
             themeFavoriteBtn =  itemView.findViewById(R.id.theme_favorite_btn);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), DetailThemeActivity.class);
+                    intent.putExtra("themeId", theme.getId());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
 
     }

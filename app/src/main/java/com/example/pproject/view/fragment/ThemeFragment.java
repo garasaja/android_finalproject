@@ -1,7 +1,6 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,27 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pproject.RetrofitService;
 import com.example.pproject.R;
-import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.adapter.ThemeAdapter;
-import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
-import com.example.pproject.viewmodel.StoreViewModel;
-import com.example.pproject.viewmodel.ThemeViewModel;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.pproject.viewmodel.theme.ThemeViewModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ThemeFragment extends Fragment {
     private static final String TAG = "ThemeFragment";

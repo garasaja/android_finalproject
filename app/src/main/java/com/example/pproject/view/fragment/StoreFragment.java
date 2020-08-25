@@ -1,7 +1,6 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,22 +13,14 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pproject.RetrofitService;
 //import com.example.pproject.adapter.HomeStoreAdapter;
 import com.example.pproject.R;
 import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.model.Store;
-import com.example.pproject.viewmodel.StoreViewModel;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.example.pproject.viewmodel.store.StoreViewModel;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StoreFragment extends Fragment {
     private static final String TAG = "StoreFragment";

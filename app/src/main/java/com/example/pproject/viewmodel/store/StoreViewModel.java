@@ -1,4 +1,4 @@
-package com.example.pproject.viewmodel;
+package com.example.pproject.viewmodel.store;
 
 import android.app.Application;
 
@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.pproject.model.Store;
+import com.example.pproject.viewmodel.store.StoreRepository;
 
 import java.util.List;
 

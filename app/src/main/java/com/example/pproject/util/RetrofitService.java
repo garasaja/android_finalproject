@@ -1,4 +1,4 @@
-package com.example.pproject;
+package com.example.pproject.util;
 
 import com.example.pproject.model.NoticeBoard;
 import com.example.pproject.model.Review;

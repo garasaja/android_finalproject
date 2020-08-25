@@ -79,7 +79,7 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
 
         private ImageView storeImage;
         private TextView homeStar, hometitle;
-
+        private Store store;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
@@ -93,10 +93,10 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), DetailStoreActivity.class);
+                    intent.putExtra("storeId", store.getId());
                     v.getContext().startActivity(intent);
                 }
             });
-
         }
 
     }

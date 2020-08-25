@@ -1,7 +1,6 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +14,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pproject.adapter.StoreAdapter;
 import com.example.pproject.model.Store;
 import com.example.pproject.adapter.HomeStoreAdapter;
-import com.example.pproject.model.Hometheme;
 import com.example.pproject.adapter.HomeThemeAdapter;
 import com.example.pproject.R;
 import com.example.pproject.model.Theme;
 import com.example.pproject.model.dto.IndexRespDto;
-import com.example.pproject.viewmodel.HomeViewModel;
-import com.example.pproject.viewmodel.StoreViewModel;
+import com.example.pproject.viewmodel.home.HomeViewModel;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 

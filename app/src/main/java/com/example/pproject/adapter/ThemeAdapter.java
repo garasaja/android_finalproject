@@ -15,6 +15,7 @@ import com.example.pproject.R;
 import com.example.pproject.model.Theme;
 import com.example.pproject.view.DetailStoreActivity;
 //import com.example.pproject.view.fragment.HomeFragment;
+import com.example.pproject.view.DetailThemeActivity;
 import com.example.pproject.view.fragment.ThemeFragment;
 import com.squareup.picasso.Picasso;
 
@@ -77,6 +78,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
 
         private ImageView ivThemeImage;
         private TextView tvPoint, tvTitle;
+        private Theme theme;
        // private Button btnFavorite;
 
 
@@ -91,8 +93,8 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), DetailStoreActivity.class);
-
+                    Intent intent = new Intent(itemView.getContext(), DetailThemeActivity.class);
+                    intent.putExtra("themeId", theme.getId());
                     v.getContext().startActivity(intent);
                 }
             });

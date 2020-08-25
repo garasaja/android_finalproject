@@ -1,4 +1,4 @@
-package com.example.pproject.viewmodel;
+package com.example.pproject.viewmodel.home;
 
 import android.app.Application;
 
@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
 import com.example.pproject.model.dto.IndexRespDto;
+import com.example.pproject.viewmodel.home.HomeRepository;
 
 import java.util.List;
 

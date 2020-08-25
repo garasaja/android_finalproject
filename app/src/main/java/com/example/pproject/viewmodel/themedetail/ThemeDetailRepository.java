@@ -1,15 +1,13 @@
-package com.example.pproject.viewmodel;
+package com.example.pproject.viewmodel.themedetail;
 
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.pproject.RetrofitHelper;
-import com.example.pproject.RetrofitService;
+import com.example.pproject.util.RetrofitHelper;
+import com.example.pproject.util.RetrofitService;
 import com.example.pproject.model.Theme;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
