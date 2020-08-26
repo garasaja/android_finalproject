@@ -14,6 +14,7 @@
     <include layout="@layout/toolbar_detail"/>
 
     <ImageView
+        android:id="@+id/store_detail_image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitXY"

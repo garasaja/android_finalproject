@@ -3,6 +3,7 @@ package com.example.pproject.view;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,71 +13,71 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.R;
 import com.example.pproject.adapter.StoreDetailThemeAdapter;
+import com.example.pproject.adapter.ThemeDetailReviewAdapter;
 import com.example.pproject.model.Theme;
+import com.example.pproject.model.dto.ThemeDetailRespDto;
 import com.example.pproject.viewmodel.themedetail.ThemeDetailViewModel;
 import com.squareup.picasso.Picasso;
 
 public class DetailThemeActivity extends AppCompatActivity {
-    private static final String TAG = "DetailStore";
-    private Button call,btnReserve , back, btnThemeDetailReview;
-    private TextView tvThemeDetailTitle , tvThemeDetailIntro;
-    private StoreDetailThemeAdapter storeDetailThemeAdapter;
-    private RecyclerView rvDetailStoreTheme, rvDetailStoreReview;
+    private static final String TAG = "DetailThemeActivity";
+    private Button gocafe, btnReserve, back, btnThemeDetailReview;
+    private TextView tvThemeDetailTitle, tvThemeDetailIntro;
+    private ThemeDetailReviewAdapter themeDetailReviewAdapter;
+    private RecyclerView  rvDetailThemeReview;
     private ThemeDetailViewModel themeDetailViewModel;
     private ImageView ivDetailThemeImage;
 
     private int themeId;
-
+    private Theme theme;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.store_detail);
+        setContentView(R.layout.theme_detail);
 
-        call = findViewById(R.id.call);
-        btnReserve = findViewById(R.id.btn_reserve);
-        btnThemeDetailReview = findViewById(R.id.btn_theme_detail_review);
-        ivDetailThemeImage = findViewById(R.id.iv_detail_theme_image);
-        tvThemeDetailTitle = findViewById(R.id.tv_theme_detail_title);
-        tvThemeDetailIntro = findViewById(R.id.tv_theme_detail_intro);
+        init();
+        listener();
+        object();
+    }
 
+    private void object() {
         Intent intent = getIntent();
-        themeId =  intent.getIntExtra("themeId",0);
-       // storeDetailTitle.setText(Integer.toString(getIntent().getIntExtra("storeId",0)));
+        themeId = intent.getIntExtra("themeId", 0);
+        Log.d(TAG, "onCreate: themeid : " + themeId);
+        // storeDetailTitle.setText(Integer.toString(getIntent().getIntExtra("storeId",0)));
 
-        //리사이클러뷰에 연결
-       // storeDetailThemeAdapter =  new StoreDetailThemeAdapter();
-       // rvDetailStoreTheme.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-       // rvDetailStoreTheme.setAdapter(storeDetailThemeAdapter);
+//        themeDetailReviewAdapter = new ThemeDetailReviewAdapter();
+//        rvDetailThemeReview.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+//        rvDetailThemeReview.setAdapter(themeDetailReviewAdapter);
 
         themeDetailViewModel = ViewModelProviders.of(this).get(ThemeDetailViewModel.class);
 
-        themeDetailViewModel.subscribe().observe(this, new Observer<Theme>() {
+        themeDetailViewModel.subscribe().observe(this, new Observer<ThemeDetailRespDto>() {
             @Override
-            public void onChanged(Theme theme) {
-                tvThemeDetailTitle.setText(theme.getName());
-                tvThemeDetailIntro.setText(theme.getIntro());
-                Picasso.get().load(theme.getThemeImg()).into(ivDetailThemeImage);
+            public void onChanged(ThemeDetailRespDto themeDetailRespDto) {
+                Log.d(TAG, "onChanged: 이미지는" + themeDetailRespDto.getTheme().getThemeImg());
+                Picasso.get().load("http://192.168.0.21:8080"+themeDetailRespDto.getTheme().getThemeImg()).into(ivDetailThemeImage);
+                tvThemeDetailTitle.setText(themeDetailRespDto.getTheme().getName());
+                tvThemeDetailIntro.setText(themeDetailRespDto.getTheme().getIntro());
+
+//                themeDetailReviewAdapter.addItems(themeDetailRespDto.getReviews());
+
             }
         });
         themeDetailViewModel.initLiveData(themeId);
+    }
 
-//
-//        storeDetailViewModel.subscribe1().observe(this, new Observer<List<Store>>() {
-//            @Override
-//            public void onChanged(List<Theme> storeList) {
-//                storeDetailThemeAdapter.addItems(storeList);
-//                storeDetailThemeAdapter.notifyDataSetChanged();
-//            }
-//        });
-
-        call.setOnClickListener(new View.OnClickListener() {
+    private void listener() {
+        gocafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:01012345678"));
+                Intent intent = new Intent(DetailThemeActivity.this,DetailStoreActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,5 +97,14 @@ public class DetailThemeActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+    }
+
+    private void init() {
+        gocafe = findViewById(R.id.gocafe);
+        btnReserve = findViewById(R.id.btn_reserve);
+        btnThemeDetailReview = findViewById(R.id.btn_theme_detail_review);
+        ivDetailThemeImage = findViewById(R.id.iv_detail_theme_image);
+        tvThemeDetailTitle = findViewById(R.id.tv_theme_detail_title);
+        tvThemeDetailIntro = findViewById(R.id.tv_theme_detail_intro);
     }
 }

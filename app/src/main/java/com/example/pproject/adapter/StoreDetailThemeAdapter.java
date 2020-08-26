@@ -13,32 +13,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pproject.R;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
+import com.example.pproject.model.dto.ReviewRespDto;
+import com.example.pproject.model.dto.ThemeRespDto;
 import com.example.pproject.view.DetailStoreActivity;
+import com.example.pproject.view.DetailThemeActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StoreDetailThemeAdapter extends RecyclerView.Adapter<StoreDetailThemeAdapter.MyViewHolder> {
-    private static final String TAG = "StoreDetailAdapter";
-    private List<Theme> themeList = new ArrayList<>();
+    private static final String TAG = "StoreDetailThemeAdapter";
+    private List<ThemeRespDto> themeRespDtos = new ArrayList<>();
     private DetailStoreActivity detailStoreActivity;
 
     public StoreDetailThemeAdapter() {
+
     }
 
     public StoreDetailThemeAdapter(DetailStoreActivity detailStoreActivity) {
         this.detailStoreActivity = detailStoreActivity;
     }
 
-    public void addItem(Theme theme) {
-        themeList.add(theme);
+    public void addItem(ThemeRespDto themeRespDto) {
+        themeRespDtos.add(themeRespDto);
     }
 
-    public void addItems(List<Theme> themeList) {
-        this.themeList = themeList;
+    public void addItems(List<ThemeRespDto> themeRespDtos) {
+        this.themeRespDtos = themeRespDtos;
     }
-
 
 
     @NonNull
@@ -53,26 +56,32 @@ public class StoreDetailThemeAdapter extends RecyclerView.Adapter<StoreDetailThe
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Theme theme = themeList.get(position);
-        holder.storeDetailThemePoint.setText(Float.toString(theme.getRating()/2));
-        holder.storeDetailThemeTitle.setText(theme.getName());
-        Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.storeDetailThemeImage);
-   //     Picasso.get().load(store.getStoreImg()).into(holder.storeDetailThemeImage);
+        ThemeRespDto themeRespDto = themeRespDtos.get(position);
+        holder.setThemeRespDto(themeRespDto);
+        holder.storeDetailThemePoint.setText(Float.toString(themeRespDto.getRating()/2));
+        holder.storeDetailThemeTitle.setText(themeRespDto.getName());
+     //   Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.storeDetailThemeImage);
+        Picasso.get().load("http://192.168.0.21:8080"+themeRespDto.getThemeImg()).into(holder.storeDetailThemeImage);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return themeList.size();
+        return themeRespDtos.size();
     }
+
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
+        private ThemeRespDto themeRespDto;
         private ImageView storeDetailThemeImage;
         private TextView storeDetailThemePoint, storeDetailThemelevel , storeDetailThemeTitle;
 
+        public void setThemeRespDto(ThemeRespDto themeRespDto) {
+            this.themeRespDto = themeRespDto;
+        }
 
         public MyViewHolder(final View itemView) {
             super(itemView);
@@ -85,7 +94,8 @@ public class StoreDetailThemeAdapter extends RecyclerView.Adapter<StoreDetailThe
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), DetailStoreActivity.class);
+                    Intent intent = new Intent(itemView.getContext(), DetailThemeActivity.class);
+
                     v.getContext().startActivity(intent);
                 }
             });

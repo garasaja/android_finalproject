@@ -1,5 +1,9 @@
 package com.example.pproject.model.dto;
 
+import com.example.pproject.model.Store;
+
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +13,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ReserveStoreRespDto {
+public class StoreDetailRespDto {
     private int id;
-    private String name;
+    private Store store;
+    private List<ThemeRespDto> themes;
+
+    private List<ReviewRespDto> reviews;
 }

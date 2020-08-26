@@ -61,6 +61,7 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
         Theme theme = themeList.get(position);
         holder.themeLevel.setText(Integer.toString(theme.getLevel()));
         Log.d(TAG, "onBindViewHolder: "+theme.getName());
+        holder.setTheme(theme);
         holder.themeTitle.setText(theme.getName());
         holder.themePoint.setText(Float.toString(theme.getRating()/2));
 ////        holder.themePoint.setText(theme.getRating()/2);
@@ -82,6 +83,10 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
         private Theme theme;
 //        private ImageView storeIntro;
 
+        public void setTheme(Theme theme) {
+            this.theme = theme;
+        }
+
         public MyViewHolder(@NonNull final View itemView) {
             super(itemView);
 
@@ -92,6 +97,7 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
             themeLevel =  itemView.findViewById(R.id.theme_level);
             themeTitle =  itemView.findViewById(R.id.theme_title);
             themeFavoriteBtn =  itemView.findViewById(R.id.theme_favorite_btn);
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

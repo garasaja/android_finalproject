@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LoginRequestDto {
+public class ReviewRespDto {
+    private int id;
     private String username;
-    private String password;
+    private String content;
+    private int rating;
 }

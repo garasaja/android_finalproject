@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.pproject.model.dto.StoreDetailRespDto;
 import com.example.pproject.util.RetrofitHelper;
 import com.example.pproject.util.RetrofitService;
 import com.example.pproject.model.Store;
@@ -20,7 +21,7 @@ public class StoreDetailRepository {
 
     Retrofit retrofit;
 
-    private MutableLiveData <Store> mutableLiveData1;
+    private MutableLiveData <StoreDetailRespDto> mutableLiveData1;
     //private MutableLiveData <List<Review>> mutableLiveData2;
 
     public StoreDetailRepository() {
@@ -29,26 +30,26 @@ public class StoreDetailRepository {
         //mutableLiveData2 = new MutableLiveData<>();
     }
 
-    public LiveData<Store> initData1() {
+    public LiveData<StoreDetailRespDto> initData1() {
         return mutableLiveData1;
     }
 //    public LiveData<List<Review>> initData2() {
 //        return mutableLiveData2;
 //    }
 
-    public void getStore(int id) {
+    public void getStoreDetail(int id) {
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<Store> call = retrofitService.스토어디테일보기(id);
+        Call<StoreDetailRespDto> call = retrofitService.스토어디테일보기(id);
 
-        call.enqueue(new Callback<Store>() {
+        call.enqueue(new Callback<StoreDetailRespDto>() {
             @Override
-            public void onResponse(Call<Store> call, Response<Store> response) {
-                Store store = response.body();
-                mutableLiveData1.setValue(store);
+            public void onResponse(Call<StoreDetailRespDto> call, Response<StoreDetailRespDto> response) {
+                StoreDetailRespDto storeDetailRespDto = response.body();
+                mutableLiveData1.setValue(storeDetailRespDto);
             }
 
             @Override
-            public void onFailure(Call<Store> call, Throwable t) {
+            public void onFailure(Call<StoreDetailRespDto> call, Throwable t) {
                 Log.d(TAG, "onFailure: 실패오류 원인은 : " + t.getMessage());
             }
         });

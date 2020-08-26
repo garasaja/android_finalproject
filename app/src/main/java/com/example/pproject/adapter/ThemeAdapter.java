@@ -1,6 +1,7 @@
 package com.example.pproject.adapter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Theme theme = themeList.get(position);
+        holder.setTheme(theme);
 //        holder.homeLocation.setText(store.getLocation()+"");
         holder.tvPoint.setText(Integer.toString(theme.getRating()/2));
         holder.tvTitle.setText(theme.getName());
@@ -81,10 +83,13 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
         private Theme theme;
        // private Button btnFavorite;
 
+        public void setTheme(Theme theme) {
+            this.theme = theme;
+        }
 
         public MyViewHolder(final View itemView) {
             super(itemView);
-
+            Log.d(TAG, "MyViewHolder: theme : " + theme);
             ivThemeImage = itemView.findViewById(R.id.theme_image);
             tvPoint = itemView.findViewById(R.id.theme_point);
             tvTitle = itemView.findViewById(R.id.theme_title);
@@ -94,7 +99,9 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), DetailThemeActivity.class);
+                    Log.d(TAG, "onClick: themeId : " + theme);
                     intent.putExtra("themeId", theme.getId());
+
                     v.getContext().startActivity(intent);
                 }
             });

@@ -61,6 +61,7 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Store store = storeList.get(position);
 //        holder.homeLocation.setText(store.getLocation()+"");
+        holder.setStore(store);
         holder.homeStar.setText(Float.toString(store.getRating()/2));
         holder.hometitle.setText(store.getName());
     //    Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.storeImage);
@@ -81,6 +82,10 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
         private TextView homeStar, hometitle;
         private Store store;
 
+        public void setStore(Store store) {
+            this.store = store;
+        }
+
         public MyViewHolder(final View itemView) {
             super(itemView);
 
@@ -93,6 +98,7 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), DetailStoreActivity.class);
+                    Log.d(TAG, "onClick: storeId : " + store);
                     intent.putExtra("storeId", store.getId());
                     v.getContext().startActivity(intent);
                 }

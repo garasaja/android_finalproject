@@ -39,7 +39,7 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.map,container,false);
 
         // java code

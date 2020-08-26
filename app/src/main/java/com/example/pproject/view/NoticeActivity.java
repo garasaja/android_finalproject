@@ -13,19 +13,31 @@ import com.example.pproject.R;
 
 public class NoticeActivity extends AppCompatActivity {
     private Button back;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice);
 
-        back = findViewById(R.id.back);
+        init();
+        listener();
+        object();
+    }
+
+    private void object() {
+        Intent intent = getIntent();
+    }
+
+    private void listener() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+    }
 
-        Intent intent = getIntent();
+    private void init() {
+        back = findViewById(R.id.back);
     }
 }

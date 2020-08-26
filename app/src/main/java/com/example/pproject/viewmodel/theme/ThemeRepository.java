@@ -18,7 +18,7 @@ import retrofit2.Retrofit;
 
 public class ThemeRepository {
 
-    private static final String TAG = "HomeRepository";
+    private static final String TAG = "ThemeRepository";
 
     Retrofit retrofit;
 

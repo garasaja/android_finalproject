@@ -2,6 +2,7 @@ package com.example.pproject.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ import com.example.pproject.view.ReserveListActivity;
 import com.example.pproject.view.SettingActivity;
 
 public class MyMenuFragment extends Fragment {
+    private static final String TAG = "MyMenuFragment";
     private Button setting,likestore,liketheme,notice,question,reservelist;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.mymenu,container,false);
 
         setting = rootView.findViewById(R.id.mymenu_setting);

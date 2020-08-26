@@ -1,6 +1,7 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.R;
@@ -28,35 +30,15 @@ public class ThemeFragment extends Fragment {
     private ThemeAdapter themeAdapter;
     private ImageButton favorite_btn;
     private ThemeViewModel themeViewModel;
-    private List<Theme> themeList = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.theme,container,false);
 
         rvTheme = rootView.findViewById(R.id.rv_theme);
         favorite_btn = rootView.findViewById(R.id.theme_favorite_btn);
-
-        /////////////////////////////
-
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    themeList = call.execute().body();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-//
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
 
         //리사이클러뷰에 연결
         themeAdapter = new ThemeAdapter();

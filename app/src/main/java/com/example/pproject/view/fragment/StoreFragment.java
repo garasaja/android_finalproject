@@ -1,6 +1,7 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class StoreFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.store,container,false);
 
         rvStore = rootView.findViewById(R.id.rv_store);
@@ -69,15 +71,6 @@ public class StoreFragment extends Fragment {
         });
 
         storeViewModel.initLiveData();
-
-//        Log.d(TAG, "onResponse: rvStore" + rvStore);
-//
-//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(0).getStoreImg());
-//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(1).getStoreImg());
-//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(2).getStoreImg());
-//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(3).getStoreImg());
-//        Log.d(TAG, "onCreateView: storelist의 이미지 : " + storeList.get(4).getStoreImg());
-
 
         return  rootView;
     }

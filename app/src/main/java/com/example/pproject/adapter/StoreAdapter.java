@@ -91,7 +91,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
         public MyViewHolder(final View itemView) {
             super(itemView);
-
+            Log.d(TAG, "MyViewHolder: store" + store);
             ivStoreImage = itemView.findViewById(R.id.iv_store_image);
             tvPoint = itemView.findViewById(R.id.store_point);
             tvTitle = itemView.findViewById(R.id.store_title);
@@ -101,6 +101,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), DetailStoreActivity.class);
+                    Log.d(TAG, "onClick: storeId : " + store);
                     intent.putExtra("storeId", store.getId());
                     v.getContext().startActivity(intent);
                 }

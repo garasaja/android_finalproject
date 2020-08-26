@@ -17,14 +17,25 @@ public class ReserveListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reservelist);
 
-        back = findViewById(R.id.back);
+        init();
+        listener();
+        object();
+    }
+
+    private void object() {
+        Intent intent = getIntent();
+    }
+
+    private void listener() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+    }
 
-        Intent intent = getIntent();
+    private void init() {
+        back = findViewById(R.id.back);
     }
 }

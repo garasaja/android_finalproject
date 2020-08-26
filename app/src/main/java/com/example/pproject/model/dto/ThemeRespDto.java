@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LoginRequestDto {
-    private String username;
-    private String password;
+public class ThemeRespDto {
+    private String name;
+    private String themeImg;
+    private String genre;
+    private int rating;
 }

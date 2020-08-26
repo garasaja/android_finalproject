@@ -22,24 +22,24 @@ public class HomeRepository {
 
     Retrofit retrofit;
 
-    private MutableLiveData <List<Store>> mutableLiveData1;
-    private MutableLiveData <List<Theme>> mutableLiveData2;
+//    private MutableLiveData <List<Store>> mutableLiveData1;
+//    private MutableLiveData <List<Theme>> mutableLiveData2;
     private MutableLiveData <IndexRespDto> mutableLiveData3;
 
     public HomeRepository() {
         retrofit = RetrofitHelper.getRetrofit();
-        mutableLiveData1 = new MutableLiveData<>();
-        mutableLiveData2 = new MutableLiveData<>();
+//        mutableLiveData1 = new MutableLiveData<>();
+//        mutableLiveData2 = new MutableLiveData<>();
         mutableLiveData3 = new MutableLiveData<>();
     }
 
-    public LiveData<List<Store>> initStoreData() {
-        return mutableLiveData1;
-    }
-
-    public LiveData<List<Theme>> initThemeData() {
-        return mutableLiveData2;
-    }
+//    public LiveData<List<Store>> initStoreData() {
+//        return mutableLiveData1;
+//    }
+//
+//    public LiveData<List<Theme>> initThemeData() {
+//        return mutableLiveData2;
+//    }
 
     public LiveData<IndexRespDto> initIndexRespDtoData() {
         return mutableLiveData3;

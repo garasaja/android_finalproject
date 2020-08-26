@@ -7,11 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.pproject.model.Theme;
+import com.example.pproject.model.dto.ThemeDetailRespDto;
 import com.example.pproject.viewmodel.themedetail.ThemeDetailRepository;
 
 public class ThemeDetailViewModel extends AndroidViewModel {
 
-    private LiveData<Theme> liveData;
+    private LiveData<ThemeDetailRespDto> liveData;
     private ThemeDetailRepository themeDetailRepository;
 
     public ThemeDetailViewModel(@NonNull Application application) {
@@ -24,7 +25,7 @@ public class ThemeDetailViewModel extends AndroidViewModel {
         themeDetailRepository.getTheme(id);
     }
 
-    public LiveData<Theme> subscribe() {
+    public LiveData<ThemeDetailRespDto> subscribe() {
         return liveData;
     }
 }

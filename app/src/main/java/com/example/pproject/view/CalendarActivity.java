@@ -2,6 +2,7 @@ package com.example.pproject.view;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,11 +18,12 @@ import com.prolificinteractive.materialcalendarview.OnRangeSelectedListener;
 import java.util.List;
 
 public class CalendarActivity extends AppCompatActivity {
-
+    private static final String TAG = "CalendarActivity";
     private MaterialCalendarView materialCalendarView;
     private Button back;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reserve_calendar);
 

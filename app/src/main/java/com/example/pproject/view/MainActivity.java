@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -39,40 +40,37 @@ public class MainActivity extends AppCompatActivity {
     private StoreFragment storeFragment;
     private ThemeFragment themeFragment;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         init();
         replaceFragment();
-        permissionListener();
-
+      //  permissionListener();
     }
 
-    public void permissionListener() {
-        PermissionListener permissionListener = new PermissionListener() {
-            @Override
-            public void onPermissionGranted() {
-                Toast.makeText(MainActivity.this, "권한 허가", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                Toast.makeText(MainActivity.this, "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        TedPermission.with(this)
-                .setPermissionListener(permissionListener)
-                .setRationaleMessage("구글 로그인을 하기 위해서는 주소록 접근 권한이 필요해요")
-                .setDeniedMessage("권한을 거부하셨습니다. [설정] > [권한]에서 권한을 허용할 수 있습니다.")
-                .setPermissions(Manifest.permission.READ_CONTACTS)
-                .check();
-    }
+//    public void permissionListener() {
+//        PermissionListener permissionListener = new PermissionListener() {
+//            @Override
+//            public void onPermissionGranted() {
+//                Toast.makeText(MainActivity.this, "권한 허가", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+//                Toast.makeText(MainActivity.this, "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//
+//        TedPermission.with(this)
+//                .setPermissionListener(permissionListener)
+//                .setRationaleMessage("구글 로그인을 하기 위해서는 주소록 접근 권한이 필요해요")
+//                .setDeniedMessage("권한을 거부하셨습니다. [설정] > [권한]에서 권한을 허용할 수 있습니다.")
+//                .setPermissions(Manifest.permission.READ_CONTACTS)
+//                .check();
+//    }
 
     public void init() {
         bottomNavigationView = findViewById(R.id.bottomNavi);
@@ -124,27 +122,4 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"한번 더 누르면 종료됩니다.",Toast.LENGTH_SHORT).show();
         }
     }
-
-//    class MyPagerAdapter extends FragmentStatePagerAdapter {
-//        ArrayList<Fragment> items = new ArrayList<Fragment>();
-//
-//        public MyPagerAdapter(FragmentManager fm) {
-//            super(fm);
-//        }
-//
-//        public void addItem(Fragment item) {
-//            items.add(item);
-//        }
-//
-//        @NonNull
-//        @Override
-//        public Fragment getItem(int position) {
-//            return items.get(position);
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return items.size();
-//        }
-//    }
 }

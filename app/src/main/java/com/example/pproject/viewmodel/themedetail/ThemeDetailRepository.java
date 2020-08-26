@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.pproject.model.dto.ThemeDetailRespDto;
 import com.example.pproject.util.RetrofitHelper;
 import com.example.pproject.util.RetrofitService;
 import com.example.pproject.model.Theme;
@@ -16,34 +17,34 @@ import retrofit2.Retrofit;
 
 public class ThemeDetailRepository {
 
-    private static final String TAG = "HomeRepository";
+    private static final String TAG = "ThemeDetailRepository";
 
     Retrofit retrofit;
 
-    private MutableLiveData <Theme> mutableLiveData;
+    private MutableLiveData <ThemeDetailRespDto> mutableLiveData;
 
     public ThemeDetailRepository() {
         retrofit = RetrofitHelper.getRetrofit();
         mutableLiveData = new MutableLiveData<>();
     }
 
-    public LiveData<Theme> initData() {
+    public LiveData<ThemeDetailRespDto> initData() {
         return mutableLiveData;
     }
 
     public void getTheme(int id) {
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<Theme> call = retrofitService.테마디테일보기(id);
+        Call<ThemeDetailRespDto> call = retrofitService.테마디테일보기(id);
 
-        call.enqueue(new Callback<Theme>() {
+        call.enqueue(new Callback<ThemeDetailRespDto>() {
             @Override
-            public void onResponse(Call<Theme> call, Response<Theme> response) {
-                Theme theme = response.body();
-                mutableLiveData.setValue(theme);
+            public void onResponse(Call<ThemeDetailRespDto> call, Response<ThemeDetailRespDto> response) {
+                ThemeDetailRespDto themeDetailRespDto = response.body();
+                mutableLiveData.setValue(themeDetailRespDto);
             }
 
             @Override
-            public void onFailure(Call<Theme> call, Throwable t) {
+            public void onFailure(Call<ThemeDetailRespDto> call, Throwable t) {
                 Log.d(TAG, "onFailure: 실패오류 원인은 : " + t.getMessage());
             }
         });

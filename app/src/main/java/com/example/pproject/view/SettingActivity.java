@@ -18,16 +18,23 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
 
+        init();
+        listener();
+        object();
+    }
+
+    private void init() {
         back = findViewById(R.id.back);
+    }
+    private void listener() {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
+    }
+    private void object() {
         Intent intent = getIntent();
-
-
     }
 }

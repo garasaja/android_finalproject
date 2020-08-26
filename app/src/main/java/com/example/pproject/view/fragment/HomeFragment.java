@@ -1,6 +1,7 @@
 package com.example.pproject.view.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,40 +34,19 @@ public class HomeFragment extends Fragment {
     private HomeStoreAdapter homeStoreAdapter;
     private HomeThemeAdapter homeThemeAdapter;
     private CarouselView carouselView;
-    private HomeViewModel homeViewModel1 ,homeViewModel2 , homeViewModel3;
+    private HomeViewModel homeViewModel3;
 
-    private List<Store> storeList = new ArrayList<>();
-    private List<Theme> themeList = new ArrayList<>();
-    private List<IndexRespDto> indexRespDtoList = new ArrayList<>();
-   // private ImageView storeIntro;
-
-    int[] carrouselImage = {R.drawable.main1, R.drawable.main2, R.drawable.main3};
+    private int[] carrouselImage = {R.drawable.main1, R.drawable.main2, R.drawable.main3};
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.home,container,false);
 
         rvHomeStore = rootView.findViewById(R.id.rv_home_store);
         rvHometheme = rootView.findViewById(R.id.rv_home_theme);
         carouselView = rootView.findViewById(R.id.carouselView);
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    storeList = call.execute().body();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-//
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
 
         homeStoreAdapter = new HomeStoreAdapter();
         rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
@@ -84,10 +64,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(IndexRespDto indexRespDto) {
 
-//                for (Theme theme : indexRespDto.getThemes()){
-//                    Log.d(TAG, "onChanged: "+theme.getName());
-//                }
-
                 homeStoreAdapter.addItems(indexRespDto.getStores());
                 homeStoreAdapter.notifyDataSetChanged();
                 homeThemeAdapter.addItems(indexRespDto.getThemes());
@@ -96,123 +72,11 @@ public class HomeFragment extends Fragment {
         });
         homeViewModel3.initLiveData3();
 
-//        //리사이클러뷰에 연결
-//        homeStoreAdapter = new HomeStoreAdapter();
-//        rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-//        rvHomeStore.setAdapter(homeStoreAdapter);
-//
-//        homeViewModel1 = ViewModelProviders.of(this).get(HomeViewModel.class);
-//
-//        homeViewModel1.subscribe1().observe(this, new Observer<List<Store>>() {
-//            @Override
-//            public void onChanged(List<Store> storeList) {
-//                homeStoreAdapter.addItems(storeList);
-//                homeStoreAdapter.notifyDataSetChanged();
-//
-//            }
-//        });
-//
-//        homeViewModel1.initLiveData1();
-//
-//        //리사이클러뷰에 연결
-//        homeThemeAdapter = new HomeThemeAdapter();
-//        rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-//        rvHometheme.setAdapter(homeThemeAdapter);
-//
-//        homeViewModel2 = ViewModelProviders.of(this).get(HomeViewModel.class);
-//
-//        homeViewModel2.subscribe2().observe(this, new Observer<List<Theme>>() {
-//            @Override
-//            public void onChanged(List<Theme> themeList) {
-//                homeThemeAdapter.addItems(themeList);
-//                homeThemeAdapter.notifyDataSetChanged();
-//            }
-//        });
-//
-//        homeViewModel2.initLiveData2();
-
-//        try {
-//            storeList = call.execute().body();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Log.d(TAG, "onCreateView: 스레드진입");
-//                call.enqueue(new Callback<List<Store>>() {
-//                    @Override
-//                    public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
-//                        Log.d(TAG, "onResponse: 진입함 "+response.isSuccessful());
-//                        if (response.isSuccessful()) {
-//                            List<Store> storeList = response.body();
-//
-//                            Log.d(TAG, "onResponse: "+storeList.get(0).getName());
-//                            Log.d(TAG, "onResponse: "+storeList.get(1).getName());
-//
-//                    //리사이클러뷰에 연결
-//                    homeStoreAdapter = new HomeStoreAdapter();
-//                    rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-//                    homeStoreAdapter.addItems(storeList);
-//                    rvHomeStore.setAdapter(homeStoreAdapter);
-//                    Log.d(TAG, "onResponse: rvHomeStore" + rvHomeStore);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<List<Store>> call, Throwable t) {
-//                        t.getStackTrace();
-//                        Log.d(TAG, "onFailure: "+t.getMessage());
-//                    }
-//                });
-//            }
-//        }).start();
-
-//        Log.d(TAG, "onCreateView: asdf");
-//        call.enqueue(new Callback<List<Store>>() {
-//            @Override
-//            public void onResponse(Call<List<Store>> call, Response<List<Store>> response) {
-//                Log.d(TAG, "onResponse: 진입함 "+response.isSuccessful());
-//                if (response.isSuccessful()) {
-//                    List<Store> storeList = response.body();
-//
-//                    Log.d(TAG, "onResponse: "+storeList.get(0).getHomepage());
-////                    for (Store store : storeList) {
-////                        storeList.add(store);
-////                    }
-////                    //리사이클러뷰에 연결
-////                    homeStoreAdapter = new HomeStoreAdapter();
-////                    rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-////                    homeStoreAdapter.addItems(storeList);
-////                    rvHomeStore.setAdapter(homeStoreAdapter);
-////                    Log.d(TAG, "onResponse: rvHomeStore" + rvHomeStore);
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Store>> call, Throwable t) {
-//                t.getStackTrace();
-//                Log.d(TAG, "onFailure: "+t.getMessage());
-//            }
-//        });
-
-//        //리사이클러뷰에 연결
-//        homeStoreAdapter = new HomeStoreAdapter();
-//        rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-//        homeStoreAdapter.addItems(storeList);
-//        rvHomeStore.setAdapter(homeStoreAdapter);
-//        Log.d(TAG, "onResponse: rvHomeStore" + rvHomeStore);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         carouselView.setPageCount(carrouselImage.length);
         carouselView.setImageListener(imageListener);
 
         return rootView;
-    } // oncreate view 끝나는곳
+    }
 
     ImageListener imageListener = new ImageListener() {
         @Override
