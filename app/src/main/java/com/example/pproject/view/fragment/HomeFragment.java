@@ -44,21 +44,14 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.home,container,false);
 
-        rvHomeStore = rootView.findViewById(R.id.rv_home_store);
-        rvHometheme = rootView.findViewById(R.id.rv_home_theme);
-        carouselView = rootView.findViewById(R.id.carouselView);
+        init(rootView);
+        adapter();
+        object();
 
-        homeStoreAdapter = new HomeStoreAdapter();
-        rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        rvHomeStore.setAdapter(homeStoreAdapter);
-        homeStoreAdapter.addItems(new ArrayList<Store>());
+        return rootView;
+    }
 
-
-        homeThemeAdapter = new HomeThemeAdapter();
-        rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
-        rvHometheme.setAdapter(homeThemeAdapter);
-        homeThemeAdapter.addItems(new ArrayList<Theme>());
-
+    private void object() {
         homeViewModel3 = ViewModelProviders.of(this).get(HomeViewModel.class);
         homeViewModel3.subscribe3().observe(this, new Observer<IndexRespDto>() {
             @Override
@@ -74,8 +67,25 @@ public class HomeFragment extends Fragment {
 
         carouselView.setPageCount(carrouselImage.length);
         carouselView.setImageListener(imageListener);
+    }
 
-        return rootView;
+    private void adapter() {
+        homeStoreAdapter = new HomeStoreAdapter();
+        rvHomeStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        rvHomeStore.setAdapter(homeStoreAdapter);
+        homeStoreAdapter.addItems(new ArrayList<Store>());
+
+
+        homeThemeAdapter = new HomeThemeAdapter();
+        rvHometheme.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        rvHometheme.setAdapter(homeThemeAdapter);
+        homeThemeAdapter.addItems(new ArrayList<Theme>());
+    }
+
+    private void init(ViewGroup rootView) {
+        rvHomeStore = rootView.findViewById(R.id.rv_home_store);
+        rvHometheme = rootView.findViewById(R.id.rv_home_theme);
+        carouselView = rootView.findViewById(R.id.carouselView);
     }
 
     ImageListener imageListener = new ImageListener() {

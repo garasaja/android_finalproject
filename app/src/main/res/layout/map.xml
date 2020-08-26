@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
+<!--        <EditText-->
 
-            android:hint="검색할 장소를 입력 후 선택해주세요"
-            android:id="@+id/map_et_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+<!--            android:hint="검색할 장소를 입력 후 선택해주세요"-->
+<!--            android:id="@+id/map_et_search"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            />-->
 
         <RelativeLayout
             android:id="@+id/map_view"
@@ -28,8 +28,15 @@
             android:layout_alignParentBottom="true">
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/btn_current_location"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30dp"
+                android:layout_marginRight="30dp"
+                android:elevation="10dp"
+
                 android:background="@drawable/ic_mylocation"/>
 
         </RelativeLayout>

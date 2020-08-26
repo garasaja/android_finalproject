@@ -1,33 +1,47 @@
 package com.example.pproject.view.fragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.pproject.R;
+import com.example.pproject.view.MainActivity;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+import java.util.ArrayList;
+
 public class MapFragment extends Fragment implements MapView.CurrentLocationEventListener {
     private static final String TAG = "Map_Fragment";
+    private static int REQUEST_ACCESS_FINE_LOCATION = 1000;
     private MapView mapView;
-    private EditText map_et_search;
     private double mCurrentLng; //Long = X, Lat = Yㅌ
     private double mCurrentLat;
     MapPoint currentMapPoint;
     boolean isTrackingMode = false;
     RelativeLayout mLoaderLayout;
+    ImageButton btnCurrentLocation;
+    private LocationManager lm;
 
     @Override
     public void onDestroy() {
@@ -40,14 +54,13 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
-        ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.map,container,false);
-
-        // java code
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.map, container, false);
+        permissionListener();
         mapView = new MapView(getActivity());
-        map_et_search = rootView.findViewById(R.id.map_et_search);
-        ViewGroup mapViewContainer = (ViewGroup) rootView.findViewById(R.id.map_view);
-        mapViewContainer.addView(mapView);
 
+        ViewGroup mapViewContainer = rootView.findViewById(R.id.map_view);
+        mapViewContainer.addView(mapView);
+        btnCurrentLocation = rootView.findViewById(R.id.btn_current_location);
 
         // 중심점 변경
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(35.157713, 129.059129), true);
@@ -96,65 +109,79 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
         mapView.addPOIItem(marker3);
         mapView.addPOIItem(marker4);
 
-      //  setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading); // 현재 위치값 가져오기
+        setShowCurrentLocationMarker(true);
 
-       // isShowingCurrentLocationMarker();
-
-        map_et_search.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        btnCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-
-                } else {
-
-                }
+            public void onClick(View v) {
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading); // 현재 위치값 가져오기
+               // setCurrentLocationTrackingMode(isTrackingMode);
             }
         });
 
+            return rootView;
+        }
+    public void setShowCurrentLocationMarker(boolean show) { }
+    public void setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode trackingMode){}
+    public void setCustomCurrentLocationMarkerTrackingImage(int id, MapPOIItem.ImageOffset anchorPointOffset){}
+    private void permissionListener() {
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+                Toast.makeText(getActivity(), "권한 허가", Toast.LENGTH_SHORT).show();
+            }
 
-        return  rootView;
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+                Toast.makeText(getActivity(), "권한 거부\n" + deniedPermissions.toString(), Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        TedPermission.with(getActivity())
+                .setPermissionListener(permissionListener)
+                .setRationaleMessage("현재위치를 가져오기 위해서는 권한이 필요합니다 동의하시겠습니까?")
+                .setDeniedMessage("권한을 거부하셨습니다. [설정] > [권한]에서 권한을 허용할 수 있습니다.")
+                .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION)
+                .check();
     }
 
-//    public void setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode trackingMode) {
-//
-//    }
-//
-//    public boolean isShowingCurrentLocationMarker() {
-//        return true;
-//    }
 
-    @Override
-    public void onCurrentLocationUpdate(MapView mapView, MapPoint mapPoint, float v) {
-        MapPoint.GeoCoordinate mapPointGeo = mapPoint.getMapPointGeoCoord();
-        Log.i(TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, v));
-        currentMapPoint = MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude);
-        //이 좌표로 지도 중심 이동
-        mapView.setMapCenterPoint(currentMapPoint, true);
-        //전역변수로 현재 좌표 저장
-        mCurrentLat = mapPointGeo.latitude;
-        mCurrentLng = mapPointGeo.longitude;
-        Log.d(TAG, "현재위치 => " + mCurrentLat + "  " + mCurrentLng);
-        mLoaderLayout.setVisibility(View.GONE);
-        //트래킹 모드가 아닌 단순 현재위치 업데이트일 경우, 한번만 위치 업데이트하고 트래킹을 중단시키기 위한 로직
-        if (!isTrackingMode) {
-            mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        @Override
+        public void onCurrentLocationUpdate (MapView mapView, MapPoint mapPoint,float v){
+            MapPoint.GeoCoordinate mapPointGeo = mapPoint.getMapPointGeoCoord();
+            Log.i(TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy (%f)", mapPointGeo.latitude, mapPointGeo.longitude, v));
+            currentMapPoint = MapPoint.mapPointWithGeoCoord(mapPointGeo.latitude, mapPointGeo.longitude);
+            //이 좌표로 지도 중심 이동
+            mapView.setMapCenterPoint(currentMapPoint, true);
+            //전역변수로 현재 좌표 저장
+            mCurrentLat = mapPointGeo.latitude;
+            mCurrentLng = mapPointGeo.longitude;
+            Log.d(TAG, "현재위치 => " + mCurrentLat + "  " + mCurrentLng);
+            mLoaderLayout.setVisibility(View.GONE);
+            //트래킹 모드가 아닌 단순 현재위치 업데이트일 경우, 한번만 위치 업데이트하고 트래킹을 중단시키기 위한 로직
+            if (!isTrackingMode) {
+                mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+            }
+        }
+
+
+        @Override
+        public void onCurrentLocationDeviceHeadingUpdate (MapView mapView,float v){
+
+        }
+
+        @Override
+        public void onCurrentLocationUpdateFailed (MapView mapView){
+            Log.i(TAG, "onCurrentLocationUpdateFailed");
+            mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
+        }
+
+        @Override
+        public void onCurrentLocationUpdateCancelled (MapView mapView){
+            Log.i(TAG, "onCurrentLocationUpdateCancelled");
+            mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
         }
     }
 
-    @Override
-    public void onCurrentLocationDeviceHeadingUpdate(MapView mapView, float v) {
 
-    }
 
-    @Override
-    public void onCurrentLocationUpdateFailed(MapView mapView) {
-        Log.i(TAG, "onCurrentLocationUpdateFailed");
-        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
-    }
-
-    @Override
-    public void onCurrentLocationUpdateCancelled(MapView mapView) {
-        Log.i(TAG, "onCurrentLocationUpdateCancelled");
-        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
-    }
-}

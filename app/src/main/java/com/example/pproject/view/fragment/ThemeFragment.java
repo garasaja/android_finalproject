@@ -37,14 +37,14 @@ public class ThemeFragment extends Fragment {
         Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.theme,container,false);
 
-        rvTheme = rootView.findViewById(R.id.rv_theme);
-        favorite_btn = rootView.findViewById(R.id.theme_favorite_btn);
+        init(rootView);
+        adapter();
+        object();
 
-        //리사이클러뷰에 연결
-        themeAdapter = new ThemeAdapter();
-        rvTheme.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        rvTheme.setAdapter(themeAdapter);
+        return  rootView;
+    }
 
+    private void object() {
         themeViewModel = ViewModelProviders.of(this).get(ThemeViewModel.class);
         themeViewModel.subscribe().observe(this, new Observer<List<Theme>>() {
             @Override
@@ -55,7 +55,16 @@ public class ThemeFragment extends Fragment {
         });
 
         themeViewModel.initLiveData();
+    }
 
-        return  rootView;
+    private void adapter() {
+        themeAdapter = new ThemeAdapter();
+        rvTheme.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        rvTheme.setAdapter(themeAdapter);
+    }
+
+    private void init(ViewGroup rootView) {
+        rvTheme = rootView.findViewById(R.id.rv_theme);
+        favorite_btn = rootView.findViewById(R.id.theme_favorite_btn);
     }
 }

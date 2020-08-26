@@ -29,12 +29,13 @@ public class MyMenuFragment extends Fragment {
         Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.mymenu,container,false);
 
-        setting = rootView.findViewById(R.id.mymenu_setting);
-        likestore = rootView.findViewById(R.id.mymenu_likestore);
-        liketheme = rootView.findViewById(R.id.mymenu_liketheme);
-        notice = rootView.findViewById(R.id.mymenu_notice);
-        question = rootView.findViewById(R.id.mymenu_question);
-        reservelist = rootView.findViewById(R.id.mymenu_reservelist);
+        init(rootView);
+        listener();
+
+        return rootView;
+    }
+
+    private void listener() {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,8 +78,14 @@ public class MyMenuFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
 
-
-        return rootView;
+    private void init(ViewGroup rootView) {
+        setting = rootView.findViewById(R.id.mymenu_setting);
+        likestore = rootView.findViewById(R.id.mymenu_likestore);
+        liketheme = rootView.findViewById(R.id.mymenu_liketheme);
+        notice = rootView.findViewById(R.id.mymenu_notice);
+        question = rootView.findViewById(R.id.mymenu_question);
+        reservelist = rootView.findViewById(R.id.mymenu_reservelist);
     }
 }

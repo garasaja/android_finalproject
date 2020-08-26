@@ -36,30 +36,14 @@ public class StoreFragment extends Fragment {
         Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.store,container,false);
 
-        rvStore = rootView.findViewById(R.id.rv_store);
+        init(rootView);
+        adapter();
+        object();
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    storeList = call.execute().body();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-//
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        return  rootView;
+    }
 
-        //리사이클러뷰에 연결
-        storeAdapter = new StoreAdapter();
-        rvStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
-        rvStore.setAdapter(storeAdapter);
-
+    private void object() {
         storeViewModel = ViewModelProviders.of(this).get(StoreViewModel.class);
 
         storeViewModel.subscribe().observe(this, new Observer<List<Store>>() {
@@ -71,7 +55,16 @@ public class StoreFragment extends Fragment {
         });
 
         storeViewModel.initLiveData();
+    }
 
-        return  rootView;
+    private void adapter() {
+        //리사이클러뷰에 연결
+        storeAdapter = new StoreAdapter();
+        rvStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        rvStore.setAdapter(storeAdapter);
+    }
+
+    private void init(ViewGroup rootView) {
+        rvStore = rootView.findViewById(R.id.rv_store);
     }
 }
