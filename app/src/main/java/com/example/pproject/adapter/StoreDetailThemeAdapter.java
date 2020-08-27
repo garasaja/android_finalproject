@@ -58,10 +58,10 @@ public class StoreDetailThemeAdapter extends RecyclerView.Adapter<StoreDetailThe
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         ThemeRespDto themeRespDto = themeRespDtos.get(position);
         holder.setThemeRespDto(themeRespDto);
-        holder.storeDetailThemePoint.setText(Float.toString(themeRespDto.getRating()/2));
+        holder.storeDetailThemePoint.setText(Float.toString(themeRespDto.getRating()));
         holder.storeDetailThemeTitle.setText(themeRespDto.getName());
-     //   Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.storeDetailThemeImage);
-        Picasso.get().load("http://192.168.0.21:8080"+themeRespDto.getThemeImg()).into(holder.storeDetailThemeImage);
+        Picasso.get().load(themeRespDto.getThemeImg()).into(holder.storeDetailThemeImage);
+       // Picasso.get().load("http://222.234.36.82:58004"+themeRespDto.getThemeImg()).into(holder.storeDetailThemeImage);
 
 
     }
@@ -91,14 +91,14 @@ public class StoreDetailThemeAdapter extends RecyclerView.Adapter<StoreDetailThe
             storeDetailThemelevel = itemView.findViewById(R.id.store_detail_theme_level);
             storeDetailThemeTitle = itemView.findViewById(R.id.store_detail_theme_title);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), DetailThemeActivity.class);
-
-                    v.getContext().startActivity(intent);
-                }
-            });
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(itemView.getContext(), DetailThemeActivity.class);
+//
+//                    v.getContext().startActivity(intent);
+//                }
+//            });
 
         }
 

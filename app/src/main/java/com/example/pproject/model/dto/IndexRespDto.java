@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class IndexRespDto {
+    private int limit;
     private List<Store> stores;
     private List<Theme> themes;
 }

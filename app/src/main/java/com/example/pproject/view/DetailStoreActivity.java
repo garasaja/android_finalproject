@@ -65,13 +65,6 @@ public class DetailStoreActivity extends AppCompatActivity {
             }
         });
 
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
     }
 
     private void object() {
@@ -96,8 +89,8 @@ public class DetailStoreActivity extends AppCompatActivity {
             public void onChanged(StoreDetailRespDto storeDetailRespDto) {
                 storeDetailTitle.setText(storeDetailRespDto.getStore().getName());
                 storeDetailIntro.setText(storeDetailRespDto.getStore().getInfo());
-                Picasso.get().load("http://192.168.0.21:8080"+storeDetailRespDto.getStore().getStoreImg()).into(storeDetailImage);
-
+                //Picasso.get().load("http://222.234.36.82:58004"+storeDetailRespDto.getStore().getStoreImg()).into(storeDetailImage);
+                Picasso.get().load(storeDetailRespDto.getStore().getStoreImg()).into(storeDetailImage);
                 storeDetailThemeAdapter.addItems(storeDetailRespDto.getThemes());
                 storeDetailReviewAdapter.addItems(storeDetailRespDto.getReviews());
                 Log.d(TAG, "onChanged: 리뷰보기 " + storeDetailRespDto.getReviews());

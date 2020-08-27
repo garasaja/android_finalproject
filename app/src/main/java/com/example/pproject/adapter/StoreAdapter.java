@@ -59,12 +59,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Store store = storeList.get(position);
-//        holder.homeLocation.setText(store.getLocation()+"");
+     //   holder.homeLocation.setText(store.getLocation()+"");
         holder.setStore(store);
-        holder.tvPoint.setText(Float.toString(store.getRating()/2));
+        holder.tvPoint.setText(Float.toString(store.getRating()));
         holder.tvTitle.setText(store.getName());
      //   Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.ivStoreImage);
-       Picasso.get().load(store.getStoreImg().replace("localhost","192.168.0.21")).into(holder.ivStoreImage);
+    //   Picasso.get().load(store.getStoreImg().replace("192.168.0.21:8080","222.234.36.82:58004")).into(holder.ivStoreImage);
+       Picasso.get().load(store.getStoreImg()).into(holder.ivStoreImage);
+        Log.d(TAG, "onBindViewHolder: " + store.getStoreImg());
 
 
 

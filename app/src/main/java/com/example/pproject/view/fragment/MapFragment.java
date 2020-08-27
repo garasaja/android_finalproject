@@ -71,43 +71,63 @@ public class MapFragment extends Fragment implements MapView.CurrentLocationEven
         // 줌 아웃
         mapView.zoomOut(true);
 
-        MapPoint MARKER_POINT1 = MapPoint.mapPointWithGeoCoord(35.155074, 129.060095); // 서울이스케이프룸 서면 방탈출카페
-        MapPoint MARKER_POINT2 = MapPoint.mapPointWithGeoCoord(35.154642, 129.061601); // 비트포비아 서면 방탈출카페
-        MapPoint MARKER_POINT3 = MapPoint.mapPointWithGeoCoord(35.153247, 129.060834); // 방탈출카페 마스터키 서면점
-        MapPoint MARKER_POINT4 = MapPoint.mapPointWithGeoCoord(35.154710, 129.061418); // 큐(Q)방탈출카페
+        MapPoint MARKER_POINT1 = MapPoint.mapPointWithGeoCoord(35.098615, 129.029486); // 코드네임블랙
+        MapPoint MARKER_POINT2 = MapPoint.mapPointWithGeoCoord(35.155297, 129.059549); // 비밀의화원 서면점
+        MapPoint MARKER_POINT3 = MapPoint.mapPointWithGeoCoord(35.099105, 129.029111); // 부산이스케이프남포이호점
+        MapPoint MARKER_POINT4 = MapPoint.mapPointWithGeoCoord(35.154641, 129.061601); // 비트포비아 서면점
+        MapPoint MARKER_POINT5 = MapPoint.mapPointWithGeoCoord(35.154157, 129.062139); // 다이아에그
+        MapPoint MARKER_POINT6 = MapPoint.mapPointWithGeoCoord(35.154205, 129.061298); // 덤앤더머
+
+
 
         MapPOIItem marker1 = new MapPOIItem();
-        marker1.setItemName("서울이스케이프룸 서면 방탈출카페");
+        marker1.setItemName("코드네임블랙");
         marker1.setTag(0);
         marker1.setMapPoint(MARKER_POINT1);
         marker1.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
         marker1.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
         MapPOIItem marker2 = new MapPOIItem();
-        marker2.setItemName("비트포비아 서면 방탈출카페");
+        marker2.setItemName("비밀의화원 서면점");
         marker2.setTag(0);
         marker2.setMapPoint(MARKER_POINT2);
         marker2.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
         marker2.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
         MapPOIItem marker3 = new MapPOIItem();
-        marker3.setItemName("방탈출카페 마스터키 서면점");
+        marker3.setItemName("부산이스케이프남포이호점");
         marker3.setTag(0);
         marker3.setMapPoint(MARKER_POINT3);
         marker3.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
         marker3.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
         MapPOIItem marker4 = new MapPOIItem();
-        marker4.setItemName("큐(Q)방탈출카페");
+        marker4.setItemName("비트포비아 서면점");
         marker4.setTag(0);
         marker4.setMapPoint(MARKER_POINT4);
         marker4.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
         marker4.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
+        MapPOIItem marker5 = new MapPOIItem();
+        marker5.setItemName("다이아에그");
+        marker5.setTag(0);
+        marker5.setMapPoint(MARKER_POINT5);
+        marker5.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        marker5.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+
+        MapPOIItem marker6 = new MapPOIItem();
+        marker6.setItemName("덤앤더머");
+        marker6.setTag(0);
+        marker6.setMapPoint(MARKER_POINT6);
+        marker6.setMarkerType(MapPOIItem.MarkerType.BluePin); // 기본으로 제공하는 BluePin 마커 모양.
+        marker6.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin); // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
+
         mapView.addPOIItem(marker1);
         mapView.addPOIItem(marker2);
         mapView.addPOIItem(marker3);
         mapView.addPOIItem(marker4);
+        mapView.addPOIItem(marker5);
+        mapView.addPOIItem(marker6);
 
         setShowCurrentLocationMarker(true);
 

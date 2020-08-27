@@ -61,10 +61,10 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
         Theme theme = themeList.get(position);
         holder.setTheme(theme);
 //        holder.homeLocation.setText(store.getLocation()+"");
-        holder.tvPoint.setText(Integer.toString(theme.getRating()/2));
+        holder.tvPoint.setText(Integer.toString(theme.getRating()));
         holder.tvTitle.setText(theme.getName());
-   //     Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.ivThemeImage);
-       Picasso.get().load(theme.getThemeImg().replace("localhost","192.168.0.21")).into(holder.ivThemeImage);
+        Picasso.get().load(theme.getThemeImg()).into(holder.ivThemeImage);
+    //   Picasso.get().load(theme.getThemeImg().replace("192.168.0.21:8080","222.234.36.82:58004")).into(holder.ivThemeImage);
 
 
 

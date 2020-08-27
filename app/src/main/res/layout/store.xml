@@ -11,18 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:singleLine="true"/>
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_search_black_24dp"
-            android:layout_gravity="center"/>
+        <SearchView
+            android:id="@+id/store_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="검색하실 카페이름을 입력해주세요"/>
 
     </LinearLayout>
 

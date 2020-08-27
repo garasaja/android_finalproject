@@ -30,6 +30,8 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
     private static final String TAG = "HomeThemeAdapter";
     private List<Theme> themeList = new ArrayList<>();
     private HomeFragment homeFragment;
+    private final int limit = 6;
+
 
     public HomeThemeAdapter() {
         this.homeFragment = homeFragment;
@@ -63,10 +65,12 @@ public class HomeThemeAdapter extends RecyclerView.Adapter<HomeThemeAdapter.MyVi
         Log.d(TAG, "onBindViewHolder: "+theme.getName());
         holder.setTheme(theme);
         holder.themeTitle.setText(theme.getName());
-        holder.themePoint.setText(Float.toString(theme.getRating()/2));
+        holder.themePoint.setText(Float.toString(theme.getRating()));
 ////        holder.themePoint.setText(theme.getRating()/2);
       //  Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.themeImage);
-       Picasso.get().load(theme.getThemeImg().replace("localhost","192.168.0.21")).into(holder.themeImage);
+    //   Picasso.get().load(theme.getThemeImg().replace("192.168.0.21:8080","222.234.36.82:58004")).into(holder.themeImage);
+        Picasso.get().load(theme.getThemeImg()).into(holder.themeImage);
+        Log.d(TAG, "onBindViewHolder: " + theme.getThemeImg());
     }
 
     @Override

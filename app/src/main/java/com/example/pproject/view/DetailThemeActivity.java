@@ -21,6 +21,7 @@ import com.example.pproject.adapter.StoreDetailThemeAdapter;
 import com.example.pproject.adapter.ThemeDetailReviewAdapter;
 import com.example.pproject.model.Theme;
 import com.example.pproject.model.dto.ThemeDetailRespDto;
+import com.example.pproject.view.fragment.HomeFragment;
 import com.example.pproject.viewmodel.themedetail.ThemeDetailViewModel;
 import com.squareup.picasso.Picasso;
 
@@ -62,7 +63,8 @@ public class DetailThemeActivity extends AppCompatActivity {
             @Override
             public void onChanged(ThemeDetailRespDto themeDetailRespDto) {
                 Log.d(TAG, "onChanged: 이미지는" + themeDetailRespDto.getTheme().getThemeImg());
-                Picasso.get().load("http://192.168.0.21:8080"+themeDetailRespDto.getTheme().getThemeImg()).into(ivDetailThemeImage);
+                //Picasso.get().load("http://222.234.36.82:58004"+themeDetailRespDto.getTheme().getThemeImg()).into(ivDetailThemeImage);
+                Picasso.get().load(themeDetailRespDto.getTheme().getThemeImg()).into(ivDetailThemeImage);
                 tvThemeDetailTitle.setText(themeDetailRespDto.getTheme().getName());
                 tvThemeDetailIntro.setText(themeDetailRespDto.getTheme().getIntro());
 
@@ -77,7 +79,7 @@ public class DetailThemeActivity extends AppCompatActivity {
         gocafe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailThemeActivity.this,DetailStoreActivity.class);
+                Intent intent = new Intent(DetailThemeActivity.this, HomeFragment.class);
                 startActivity(intent);
             }
         });
@@ -90,13 +92,7 @@ public class DetailThemeActivity extends AppCompatActivity {
             }
         });
 
-        back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+
     }
 
     private void init() {

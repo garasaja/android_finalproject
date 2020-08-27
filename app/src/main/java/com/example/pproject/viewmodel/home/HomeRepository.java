@@ -47,7 +47,7 @@ public class HomeRepository {
 
     public void getHome() {
         RetrofitService retrofitService = retrofit.create(RetrofitService.class);
-        Call<IndexRespDto> call = retrofitService.홈스토어테마리스트가져오기();
+        Call<IndexRespDto> call = retrofitService.홈스토어테마리스트가져오기(5);
 
         call.enqueue(new Callback<IndexRespDto>() {
             @Override

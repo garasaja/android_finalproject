@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ public class StoreFragment extends Fragment {
     private StoreAdapter storeAdapter;
     private List<Store> storeList = new ArrayList<>();
     private StoreViewModel storeViewModel;
+    private SearchView store_search_view;
 
     @Nullable
     @Override
@@ -37,10 +39,25 @@ public class StoreFragment extends Fragment {
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.store,container,false);
 
         init(rootView);
+        listener();
         adapter();
         object();
 
         return  rootView;
+    }
+
+    private void listener() {
+        store_search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     private void object() {
@@ -66,5 +83,6 @@ public class StoreFragment extends Fragment {
 
     private void init(ViewGroup rootView) {
         rvStore = rootView.findViewById(R.id.rv_store);
+        store_search_view = rootView.findViewById(R.id.store_search_view);
     }
 }

@@ -62,10 +62,12 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
         Store store = storeList.get(position);
 //        holder.homeLocation.setText(store.getLocation()+"");
         holder.setStore(store);
-        holder.homeStar.setText(Float.toString(store.getRating()/2));
+        holder.homeStar.setText(Float.toString(store.getRating()));
         holder.hometitle.setText(store.getName());
     //    Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.storeImage);
-       Picasso.get().load(store.getStoreImg().replace("localhost","192.168.0.21")).into(holder.storeImage);
+       //Picasso.get().load(store.getStoreImg().replace("localhost","192.168.0.21")).into(holder.storeImage);
+       // Picasso.get().load(store.getStoreImg().replace("192.168.0.21:8080","222.234.36.82:58004")).into(holder.storeImage);
+        Picasso.get().load(store.getStoreImg()).into(holder.storeImage);
         Log.d(TAG, "onBindViewHolder: " + store.getStoreImg());
 
     }

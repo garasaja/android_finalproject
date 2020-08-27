@@ -11,8 +11,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_detail"/>
-
     <ImageView
         android:id="@+id/store_detail_image"
         android:layout_width="match_parent"
@@ -30,8 +28,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="소개글"
-        android:textSize="50sp"/>
+        android:text="위치"
+        android:textSize="30sp"/>
 
     <View
         android:layout_width="match_parent"
@@ -44,7 +42,7 @@
         android:id="@+id/store_detail_intro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="남포동 1등 방탈출 코드네임블랙 부산점입니다."/>
+        android:text="위치"/>
 
     <View
         android:layout_width="match_parent"
@@ -56,8 +54,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="테마"
-        android:textSize="50sp"/>
+        android:text="가게테마"
+        android:textSize="30sp"/>
 
     <View
         android:layout_width="match_parent"
@@ -83,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="가격"
-        android:textSize="50sp"/>
+        android:textSize="30sp"/>
 
     <View
         android:layout_width="match_parent"
@@ -96,44 +94,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="2인.......................................................................22,500원"/>
+        android:text="1인.......................................................................20,000원"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="3인.......................................................................22,500원"/>
+        android:text="2인.......................................................................30,000원"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="4인.......................................................................22,500원"/>
+        android:text="3인.......................................................................40,000원"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="5인.......................................................................22,500원"/>
+        android:text="4인.......................................................................50,000원"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="6인.......................................................................22,500원"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="위치"
-        android:textSize="50sp"/>
+        android:text="5인.......................................................................60,000원"/>
 
     <View
         android:layout_width="match_parent"
@@ -150,12 +135,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="리뷰"
-        android:textSize="50sp"/>
+        android:textSize="30sp"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="리뷰 등록"
+            android:text="리뷰 등록하러가기"
             android:textColor="@android:color/white"
             android:background="#FFC107"
             android:layout_marginBottom="20dp"/>

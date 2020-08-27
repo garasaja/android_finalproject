@@ -30,7 +30,8 @@
         <activity android:name=".view.NoticeActivity"/>
         <activity android:name=".view.SettingActivity"/>
         <activity android:name=".view.CalendarActivity"/>
-        <activity android:name=".view.MainActivity"/>
+        <activity android:name=".view.MainActivity">
+        </activity>
 
         <activity android:name=".view.Splash">
             <intent-filter>

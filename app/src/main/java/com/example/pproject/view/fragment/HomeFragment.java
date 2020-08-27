@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
             imageView.setImageResource(carrouselImage[position]);
+
         }
     };
 }
