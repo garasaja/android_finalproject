@@ -4,7 +4,9 @@ import com.example.pproject.model.NoticeBoard;
 import com.example.pproject.model.Review;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
+import com.example.pproject.model.User;
 import com.example.pproject.model.dto.IndexRespDto;
+import com.example.pproject.model.dto.LoginRequestDto;
 import com.example.pproject.model.dto.StoreDetailRespDto;
 import com.example.pproject.model.dto.ThemeDetailRespDto;
 import com.google.gson.Gson;
@@ -18,6 +20,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -43,8 +46,15 @@ public interface RetrofitService {
     @GET("notice")
     Call<List<NoticeBoard>> 공지사항보기();
 
+    @POST("join")
+    Call<User> 회원가입하기();
+
+    @POST("login")
+    Call<LoginRequestDto> 로그인하기(String username,String password);
 
 
 
 
 }
+
+

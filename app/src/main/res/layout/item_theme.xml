@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_before_favorite"/>
+            android:src="@drawable/favorite_button"/>
 
         <TextView
             android:id="@+id/text1"

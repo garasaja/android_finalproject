@@ -18,12 +18,13 @@
             android:orientation="horizontal"
             android:background="#0E0D02">
 
-            <TextView
-                android:id="@+id/mymenu_id"
+            <Button
+                android:id="@+id/btn_mymenu_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="아이디"
+                android:text="로그인이 필요합니다."
+                android:background="@android:color/black"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
 
