@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:orientation="horizontal"
-            android:background="#0E0D02">
+            android:background="#000000">
 
             <Button
                 android:id="@+id/btn_mymenu_login"
@@ -27,6 +27,13 @@
                 android:background="@android:color/black"
                 android:textColor="@android:color/white"
                 android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:gravity="center"/>
 
         </LinearLayout>
 
@@ -90,7 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                android:text=" 설정"
+                android:text="로그아웃"
                 android:gravity="left"
                 android:textSize="30sp"
                 android:layout_marginLeft="20dp"/>

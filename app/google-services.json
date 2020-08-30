@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "385281509702",
+    "firebase_url": "https://roomescape-35ca7.firebaseio.com",
+    "project_id": "roomescape-35ca7",
+    "storage_bucket": "roomescape-35ca7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:385281509702:android:1147089b49f621b26abd47",
+        "android_client_info": {
+          "package_name": "com.example.pproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "385281509702-9uo3fstrv4ubmjb8efucshcjbelmq7jt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pproject",
+            "certificate_hash": "0a429ab30599c75be9ecc65b203cc043e618b031"
+          }
+        },
+        {
+          "client_id": "385281509702-5k11t32qeaeijtan9olpnvg0bv0lfqde.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsWQ4Jbpi4aucCBPwoAz51ULsaaYhHuZQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "385281509702-5k11t32qeaeijtan9olpnvg0bv0lfqde.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
