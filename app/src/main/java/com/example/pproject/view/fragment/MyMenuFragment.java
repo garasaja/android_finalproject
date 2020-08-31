@@ -90,13 +90,13 @@ public class MyMenuFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        notice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NoticeActivity.class);
-                startActivity(intent);
-            }
-        });
+//        notice.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), NoticeActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         question.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,13 +104,13 @@ public class MyMenuFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        reservelist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ReserveListActivity.class);
-                startActivity(intent);
-            }
-        });
+//        reservelist.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), ReserveListActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         btnMymenuLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,9 +126,9 @@ public class MyMenuFragment extends Fragment {
         setting = rootView.findViewById(R.id.mymenu_setting);
         likestore = rootView.findViewById(R.id.mymenu_likestore);
         liketheme = rootView.findViewById(R.id.mymenu_liketheme);
-        notice = rootView.findViewById(R.id.mymenu_notice);
+      //  notice = rootView.findViewById(R.id.mymenu_notice);
         question = rootView.findViewById(R.id.mymenu_question);
-        reservelist = rootView.findViewById(R.id.mymenu_reservelist);
+      //  reservelist = rootView.findViewById(R.id.mymenu_reservelist);
         btnMymenuLogin = rootView.findViewById(R.id.btn_mymenu_login);
         nickname = rootView.findViewById(R.id.nickname);
         auth = FirebaseAuth.getInstance();

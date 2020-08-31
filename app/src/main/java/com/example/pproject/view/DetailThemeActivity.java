@@ -76,28 +76,28 @@ public class DetailThemeActivity extends AppCompatActivity {
     }
 
     private void listener() {
-        gocafe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailThemeActivity.this, HomeFragment.class);
-                startActivity(intent);
-            }
-        });
-
-        btnReserve.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailThemeActivity.this, CalendarActivity.class);
-                startActivity(intent);
-            }
-        });
+//        gocafe.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(DetailThemeActivity.this, HomeFragment.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        btnReserve.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(DetailThemeActivity.this, CalendarActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
     }
 
     private void init() {
-        gocafe = findViewById(R.id.gocafe);
-        btnReserve = findViewById(R.id.btn_reserve);
+//        gocafe = findViewById(R.id.gocafe);
+ //       btnReserve = findViewById(R.id.btn_reserve);
         btnThemeDetailReview = findViewById(R.id.btn_theme_detail_review);
         ivDetailThemeImage = findViewById(R.id.iv_detail_theme_image);
         tvThemeDetailTitle = findViewById(R.id.tv_theme_detail_title);

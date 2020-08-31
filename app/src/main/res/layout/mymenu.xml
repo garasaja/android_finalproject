@@ -62,25 +62,25 @@
                 android:gravity="left"
                 android:layout_marginLeft="20dp"/>
 
-            <Button
-                android:id="@+id/mymenu_reservelist"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:text="예약내역"
-                android:textSize="30sp"
-                android:gravity="left"
-                android:layout_marginLeft="20dp"/>
+<!--            <Button-->
+<!--                android:id="@+id/mymenu_reservelist"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/white"-->
+<!--                android:text="예약내역"-->
+<!--                android:textSize="30sp"-->
+<!--                android:gravity="left"-->
+<!--                android:layout_marginLeft="20dp"/>-->
 
-            <Button
-                android:id="@+id/mymenu_notice"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:text="공지사항"
-                android:textSize="30sp"
-                android:gravity="left"
-                android:layout_marginLeft="20dp"/>
+<!--            <Button-->
+<!--                android:id="@+id/mymenu_notice"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@android:color/white"-->
+<!--                android:text="공지사항"-->
+<!--                android:textSize="30sp"-->
+<!--                android:gravity="left"-->
+<!--                android:layout_marginLeft="20dp"/>-->
 
             <Button
                 android:id="@+id/mymenu_question"

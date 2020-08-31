@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
+
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -20,7 +21,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity android:name=".view.DetailStoreActivity"/>
         <activity android:name=".view.DetailThemeActivity"/>
         <activity android:name=".view.ReserveListActivity"/>
@@ -43,6 +44,9 @@
         </activity>
 
         <meta-data android:name="com.kakao.sdk.AppKey" android:value="cf59601ff0d39885326f5d0266f38df0"/>
+
+<!--        <meta-data android:name="android.max_aspect"-->
+<!--            android:value="ratio_float"/>-->
     </application>
 
 </manifest>

@@ -36,6 +36,7 @@ public class DetailStoreActivity extends AppCompatActivity {
     private ImageView storeDetailImage;
 
     private int storeId;
+    private String homepageurl;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,7 +61,9 @@ public class DetailStoreActivity extends AppCompatActivity {
         btnReserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailStoreActivity.this, CalendarActivity.class);
+                Log.d(TAG, "onClick: " + homepageurl);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(homepageurl));
+//                Intent intent = new Intent(DetailStoreActivity.this, CalendarActivity.class);
                 startActivity(intent);
             }
         });
@@ -70,6 +73,7 @@ public class DetailStoreActivity extends AppCompatActivity {
     private void object() {
         Intent intent = getIntent();
         storeId =  intent.getIntExtra("storeId",0);
+        homepageurl = intent.getStringExtra("homepage");
         Log.d(TAG, "onCreate: storeid : " + storeId);
         // storeDetailTitle.setText(Integer.toString(getIntent().getIntExtra("storeId",0)));
 
@@ -111,5 +115,7 @@ public class DetailStoreActivity extends AppCompatActivity {
         rvDetailStoreReview = findViewById(R.id.rv_detail_review);
         storeDetailImage = findViewById(R.id.store_detail_image);
         back = findViewById(R.id.back);
+
+
     }
 }

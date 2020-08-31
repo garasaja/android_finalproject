@@ -182,7 +182,7 @@
         android:background="#FFEB3B"
         android:textSize="20sp"
         android:textColor="#FB5C5C"
-        android:text="예약하기"/>
+        android:text="홈페이지"/>
     </LinearLayout>
 </LinearLayout>
 </ScrollView>

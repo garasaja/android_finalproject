@@ -48,24 +48,24 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        et_login_username = findViewById(R.id.et_login_username);
-        et_login_password = findViewById(R.id.et_login_password);
+//        et_login_username = findViewById(R.id.et_login_username);
+    //    et_login_password = findViewById(R.id.et_login_password);
       //  btn_login_signup = findViewById(R.id.btn_login_signup);
-        btn_findid = findViewById(R.id.btn_findid);
-        btn_findpassword = findViewById(R.id.btn_findpassword);
-        btn_login_join = findViewById(R.id.btn_login_join);
+    //    btn_findid = findViewById(R.id.btn_findid);
+   //     btn_findpassword = findViewById(R.id.btn_findpassword);
+   //     btn_login_join = findViewById(R.id.btn_login_join);
         btngoogle = findViewById(R.id.btn_google);
 
-        username = et_login_username.getText().toString();
-        password = et_login_password.getText().toString();
+//        username = et_login_username.getText().toString();
+    //    password = et_login_password.getText().toString();
 
-        btn_login_join.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,JoinActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btn_login_join.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(LoginActivity.this,JoinActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
