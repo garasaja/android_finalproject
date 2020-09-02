@@ -19,7 +19,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:text="문의하기"
+            android:text="리뷰쓰기"
             android:gravity="center_vertical|center_horizontal" />
 
         <Button

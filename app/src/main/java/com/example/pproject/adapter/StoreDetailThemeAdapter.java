@@ -95,7 +95,7 @@ public class StoreDetailThemeAdapter extends RecyclerView.Adapter<StoreDetailThe
 //                @Override
 //                public void onClick(View v) {
 //                    Intent intent = new Intent(itemView.getContext(), DetailThemeActivity.class);
-//
+//                    intent.putExtra(themeRespDto.)
 //                    v.getContext().startActivity(intent);
 //                }
 //            });

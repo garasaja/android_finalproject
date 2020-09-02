@@ -102,6 +102,7 @@ public class HomeStoreAdapter extends RecyclerView.Adapter<HomeStoreAdapter.MyVi
                     Intent intent = new Intent(itemView.getContext(), DetailStoreActivity.class);
                     Log.d(TAG, "onClick: storeId : " + store);
                     intent.putExtra("storeId", store.getId());
+                    intent.putExtra("homepage",store.getHomepage());
                     v.getContext().startActivity(intent);
                 }
             });

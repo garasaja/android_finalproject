@@ -22,18 +22,20 @@ import com.example.pproject.adapter.StoreDetailThemeAdapter;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.dto.StoreDetailRespDto;
 import com.example.pproject.viewmodel.storedetail.StoreDetailViewModel;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 public class DetailStoreActivity extends AppCompatActivity {
     private static final String TAG = "DetailStoreActivity";
 
-    private Button call,btnReserve , back;
+    private Button call,btnReserve , back,store_review_write;
     private TextView storeDetailTitle , storeDetailIntro;
     private StoreDetailThemeAdapter storeDetailThemeAdapter;
     private StoreDetailReviewAdapter storeDetailReviewAdapter;
     private RecyclerView rvDetailStoreTheme, rvDetailStoreReview;
     private StoreDetailViewModel storeDetailViewModel;
     private ImageView storeDetailImage;
+    private FirebaseAuth auth;
 
     private int storeId;
     private String homepageurl;
@@ -44,9 +46,12 @@ public class DetailStoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.store_detail);
 
+        auth = FirebaseAuth.getInstance();
+
         init();
         object();
         listener();
+
     }
 
     private void listener() {
@@ -64,6 +69,17 @@ public class DetailStoreActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: " + homepageurl);
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(homepageurl));
 //                Intent intent = new Intent(DetailStoreActivity.this, CalendarActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        store_review_write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),ReviewWriteActivity.class);
+                intent.putExtra("storeId",storeId);
+                intent.putExtra("googleId",auth.getCurrentUser().getEmail());
+                Log.d(TAG, "onClick: 이메일은 ? " + auth.getCurrentUser().getEmail());
                 startActivity(intent);
             }
         });
@@ -97,6 +113,7 @@ public class DetailStoreActivity extends AppCompatActivity {
                 Picasso.get().load(storeDetailRespDto.getStore().getStoreImg()).into(storeDetailImage);
                 storeDetailThemeAdapter.addItems(storeDetailRespDto.getThemes());
                 storeDetailReviewAdapter.addItems(storeDetailRespDto.getReviews());
+
                 Log.d(TAG, "onChanged: 리뷰보기 " + storeDetailRespDto.getReviews());
                 Log.d(TAG, "onChanged: gettheme는" + storeDetailRespDto.getThemes());
                 storeDetailThemeAdapter.notifyDataSetChanged();
@@ -115,7 +132,7 @@ public class DetailStoreActivity extends AppCompatActivity {
         rvDetailStoreReview = findViewById(R.id.rv_detail_review);
         storeDetailImage = findViewById(R.id.store_detail_image);
         back = findViewById(R.id.back);
-
+        store_review_write = findViewById(R.id.store_review_write);
 
     }
 }

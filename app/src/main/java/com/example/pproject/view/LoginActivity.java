@@ -2,6 +2,7 @@ package com.example.pproject.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+    private static final String TAG = "LoginActivity";
     private EditText et_login_username,et_login_password;
     private Button btn_login_signup,btn_findid,btn_findpassword,btn_login_join;
     private LoginViewModel loginViewModel;
@@ -112,6 +114,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                             intent.putExtra("nickname",account.getEmail());
+                            Log.d(TAG, "onComplete: account안에 머잇니? :" + account.getId());
                             //intent.putExtra("")
                             startActivity(intent);
                         } else {

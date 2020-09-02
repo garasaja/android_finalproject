@@ -17,12 +17,15 @@ import com.example.pproject.R;
 import com.example.pproject.model.User;
 import com.example.pproject.viewmodel.join.JoinViewModel;
 import com.example.pproject.viewmodel.theme.ThemeViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class JoinActivity extends AppCompatActivity {
     private EditText etJoinUsername,etJoinPassword,etJoinEmail;
     private Button btnJoinSignin;
     private JoinViewModel joinViewModel;
-
+    private FirebaseAuth auth;
+    private FirebaseUser CurrentUser;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +35,7 @@ public class JoinActivity extends AppCompatActivity {
         etJoinUsername = findViewById(R.id.et_join_username);
         etJoinPassword = findViewById(R.id.et_join_password);
         etJoinEmail = findViewById(R.id.et_join_email);
-        btnJoinSignin = findViewById(R.id.btn_join_signin);
+        btnJoinSignin = findViewById(R.id.btn_join);
 
 
 
@@ -40,14 +43,21 @@ public class JoinActivity extends AppCompatActivity {
         btnJoinSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                joinViewModel = ViewModelProviders.of(JoinActivity.this).get(JoinViewModel.class);
-                joinViewModel.회원가입하기(etJoinUsername.getText().toString(),etJoinEmail.getText().toString(),etJoinPassword.getText().toString());
-                Toast.makeText(JoinActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(JoinActivity.this,LoginActivity.class);
-                startActivity(intent);
+                String username = etJoinUsername.getText().toString();
+                String email = etJoinEmail.getText().toString();
+                String password = etJoinPassword.getText().toString();
+
+                joinstart();
+
             }
         });
 
+    }
+
+    private void joinstart() {
+        Toast.makeText(JoinActivity.this, "회원가입 완료", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(JoinActivity.this,LoginActivity.class);
+        startActivity(intent);
     }
 
 }
