@@ -15,7 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pproject.R;
+import com.example.pproject.model.StoreReview;
+import com.example.pproject.model.ThemeReview;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ReviewWriteActivity extends AppCompatActivity {
@@ -28,10 +32,17 @@ public class ReviewWriteActivity extends AppCompatActivity {
     private EditText reviewcontent;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private FirebaseUser currentUser;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.storereview);
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        myRef = database.getReference();
 
         register = findViewById(R.id.register);
         back = findViewById(R.id.back);
@@ -40,27 +51,64 @@ public class ReviewWriteActivity extends AppCompatActivity {
 
         reviewcontent = findViewById(R.id.reviewcontent);
         auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
 
-        Intent intent = getIntent();
-        final int storeId = intent.getIntExtra("storeId",0);
-        String getemail = intent.getStringExtra("googleId");
-        reviewemail.setText(getemail);
+
+
+
+
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                database = FirebaseDatabase.getInstance();
 
-                radiobutton = findViewById(radioGroup.getCheckedRadioButtonId());
-                 String radioresult = radiobutton.getText().toString();
-                Log.d(TAG, "onClick: 라디오버튼 체크가져옴?" + radioresult);
-                  String reviewtext = reviewcontent.getText().toString();
+                Intent intent = getIntent();
+                if (intent.hasExtra("storeId")) {
+                    final String storeId = intent.getStringExtra("storeId");
+                    radiobutton = findViewById(radioGroup.getCheckedRadioButtonId());
+                    String radioresult = radiobutton.getText().toString();
+                    Log.d(TAG, "onClick: 라디오버튼 체크가져옴?" + radioresult);
+                    String reviewtext = reviewcontent.getText().toString();
+                    String useremail = intent.getStringExtra("useremail");
+                    reviewemail.setText(useremail);
+                    StoreReview storeReview = new StoreReview(
+                        useremail,storeId,radioresult,reviewtext
+                    );
+                    myRef.child("storeId").push().setValue(storeReview);
+                    finish();
 
-                  Intent intent = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
-                  intent.putExtra("storeId",storeId);
-                  intent.putExtra("radioresult",radioresult);
-                  intent.putExtra("reviewtext",reviewtext);
-                  startActivity(intent);
+//                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
+//                    intent1.putExtra("storeId",storeId);
+//                    intent1.putExtra("radioresult",radioresult);
+//                    intent1.putExtra("reviewtext",reviewtext);
+//                    startActivity(intent1);
+//                    finish();
+
+                } else if (intent.hasExtra("themeId")) {
+                    database = FirebaseDatabase.getInstance();
+                    final String themeId = intent.getStringExtra("themeId");
+                    radiobutton = findViewById(radioGroup.getCheckedRadioButtonId());
+                    String radioresult = radiobutton.getText().toString();
+                    Log.d(TAG, "onClick: 라디오버튼 체크가져옴?" + radioresult);
+                    String reviewtext = reviewcontent.getText().toString();
+                    String useremail = intent.getStringExtra("useremail");
+                    reviewemail.setText(useremail);
+
+                    ThemeReview themeReview = new ThemeReview(
+                            useremail,themeId,radioresult,reviewtext
+                    );
+                    myRef.child("themeId").push().setValue(themeReview);
+                    finish();
+
+//                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
+//                    intent1.putExtra("themeId",themeId);
+//                    intent1.putExtra("radioresult",radioresult);
+//                    intent1.putExtra("reviewtext",reviewtext);
+//                    startActivity(intent1);
+//                    finish();
+                }
+
             }
         });
 

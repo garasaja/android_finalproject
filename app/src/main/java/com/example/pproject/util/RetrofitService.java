@@ -1,7 +1,6 @@
 package com.example.pproject.util;
 
 import com.example.pproject.model.NoticeBoard;
-import com.example.pproject.model.Review;
 import com.example.pproject.model.Store;
 import com.example.pproject.model.Theme;
 import com.example.pproject.model.User;
@@ -9,16 +8,10 @@ import com.example.pproject.model.dto.IndexRespDto;
 import com.example.pproject.model.dto.LoginRequestDto;
 import com.example.pproject.model.dto.StoreDetailRespDto;
 import com.example.pproject.model.dto.ThemeDetailRespDto;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
-import lombok.Getter;
-import lombok.Value;
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;

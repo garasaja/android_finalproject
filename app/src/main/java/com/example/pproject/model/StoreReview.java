@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Review {
-    private int id;
-    private int userId;
-    private int storeId;
-    private int themeId;
-    private int rating;
+public class StoreReview {
+    private String userEmail;
+    private String storeId;
+    private String rating;
     private String content;
-    private Timestamp createDate;
+
 }

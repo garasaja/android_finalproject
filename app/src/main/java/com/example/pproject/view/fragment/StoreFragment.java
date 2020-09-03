@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +26,7 @@ import com.example.pproject.viewmodel.store.StoreViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StoreFragment extends Fragment {
+public class StoreFragment extends Fragment implements Filterable {
     private static final String TAG = "StoreFragment";
     private RecyclerView rvStore;
     private StoreAdapter storeAdapter;
@@ -84,5 +86,10 @@ public class StoreFragment extends Fragment {
     private void init(ViewGroup rootView) {
         rvStore = rootView.findViewById(R.id.rv_store);
         store_search_view = rootView.findViewById(R.id.store_search_view);
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 }

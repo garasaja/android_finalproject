@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -19,11 +21,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pproject.R;
 import com.example.pproject.adapter.StoreDetailThemeAdapter;
 import com.example.pproject.adapter.ThemeDetailReviewAdapter;
+import com.example.pproject.model.StoreReview;
 import com.example.pproject.model.Theme;
 import com.example.pproject.model.dto.ThemeDetailRespDto;
 import com.example.pproject.view.fragment.HomeFragment;
 import com.example.pproject.viewmodel.themedetail.ThemeDetailViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class DetailThemeActivity extends AppCompatActivity {
     private static final String TAG = "DetailThemeActivity";
@@ -33,6 +45,13 @@ public class DetailThemeActivity extends AppCompatActivity {
     private RecyclerView  rvDetailThemeReview;
     private ThemeDetailViewModel themeDetailViewModel;
     private ImageView ivDetailThemeImage;
+
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase database;
+
+    private ArrayList<StoreReview> arrayList;
 
     private int themeId;
     private Theme theme;
@@ -45,6 +64,28 @@ public class DetailThemeActivity extends AppCompatActivity {
         init();
         listener();
         object();
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("storeId");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    StoreReview storeReview = snapshot.getValue(StoreReview.class);
+                    arrayList.add(storeReview);
+                }
+                themeDetailReviewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled: ", databaseError.toException());
+            }
+        });
     }
 
     private void object() {
@@ -76,6 +117,23 @@ public class DetailThemeActivity extends AppCompatActivity {
     }
 
     private void listener() {
+        btnThemeDetailReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentUser = auth.getCurrentUser();
+                if(currentUser == null){
+                    Toast.makeText(DetailThemeActivity.this, "로그인을 하셔야합니다.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(DetailThemeActivity.this, LoginActivity.class));
+                    finish();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(),ReviewWriteActivity.class);
+                    intent.putExtra("themeId",themeId);
+                    intent.putExtra("useremail",auth.getCurrentUser().getEmail());
+                    Log.d(TAG, "onClick: 이메일은 ? " + auth.getCurrentUser().getEmail());
+                    startActivity(intent);
+                }
+            }
+        });
 //        gocafe.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -102,5 +160,7 @@ public class DetailThemeActivity extends AppCompatActivity {
         ivDetailThemeImage = findViewById(R.id.iv_detail_theme_image);
         tvThemeDetailTitle = findViewById(R.id.tv_theme_detail_title);
         tvThemeDetailIntro = findViewById(R.id.tv_theme_detail_intro);
+
+        auth = FirebaseAuth.getInstance();
     }
 }

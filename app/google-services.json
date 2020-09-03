@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "914402943517",
-    "firebase_url": "https://finalroomescape.firebaseio.com",
-    "project_id": "finalroomescape",
-    "storage_bucket": "finalroomescape.appspot.com"
+    "project_number": "385281509702",
+    "firebase_url": "https://roomescape-35ca7.firebaseio.com",
+    "project_id": "roomescape-35ca7",
+    "storage_bucket": "roomescape-35ca7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:914402943517:android:27c377991a96ba3b345cf4",
+        "mobilesdk_app_id": "1:385281509702:android:1147089b49f621b26abd47",
         "android_client_info": {
           "package_name": "com.example.pproject"
         }
       },
       "oauth_client": [
         {
-          "client_id": "914402943517-7nju17j1a92mu9o5cbmulk69is2arku3.apps.googleusercontent.com",
+          "client_id": "385281509702-stgdo2h93861ut8vfteaodjeerkqdi6r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.pproject",
-            "certificate_hash": "0afc5bd1e1cb89e7c52225793964ba71f53e7e01"
+            "certificate_hash": "0a429ab30599c75be9ecc65b203cc043e618b031"
           }
         },
         {
-          "client_id": "914402943517-a1vdhi89m01efrtjq57oheq0qfd85u61.apps.googleusercontent.com",
+          "client_id": "385281509702-5k11t32qeaeijtan9olpnvg0bv0lfqde.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCkoCzsAQVfAkgp1HwsZkNK_3WwcpWQWo0"
+          "current_key": "AIzaSyBsWQ4Jbpi4aucCBPwoAz51ULsaaYhHuZQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "914402943517-a1vdhi89m01efrtjq57oheq0qfd85u61.apps.googleusercontent.com",
+              "client_id": "385281509702-5k11t32qeaeijtan9olpnvg0bv0lfqde.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

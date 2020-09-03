@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -20,10 +22,20 @@ import com.example.pproject.R;
 import com.example.pproject.adapter.StoreDetailReviewAdapter;
 import com.example.pproject.adapter.StoreDetailThemeAdapter;
 import com.example.pproject.model.Store;
+import com.example.pproject.model.StoreReview;
 import com.example.pproject.model.dto.StoreDetailRespDto;
 import com.example.pproject.viewmodel.storedetail.StoreDetailViewModel;
+import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class DetailStoreActivity extends AppCompatActivity {
     private static final String TAG = "DetailStoreActivity";
@@ -35,10 +47,17 @@ public class DetailStoreActivity extends AppCompatActivity {
     private RecyclerView rvDetailStoreTheme, rvDetailStoreReview;
     private StoreDetailViewModel storeDetailViewModel;
     private ImageView storeDetailImage;
-    private FirebaseAuth auth;
 
     private int storeId;
     private String homepageurl;
+
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
+    private DatabaseReference databaseReference;
+    private FirebaseDatabase database;
+
+    private ArrayList<StoreReview> arrayList;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +66,26 @@ public class DetailStoreActivity extends AppCompatActivity {
         setContentView(R.layout.store_detail);
 
         auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference().child("storeId");
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    StoreReview storeReview = snapshot.getValue(StoreReview.class);
+                    arrayList.add(storeReview);
+                }
+                storeDetailReviewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled: ", databaseError.toException());
+            }
+        });
 
         init();
         object();
@@ -76,11 +115,19 @@ public class DetailStoreActivity extends AppCompatActivity {
         store_review_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ReviewWriteActivity.class);
-                intent.putExtra("storeId",storeId);
-                intent.putExtra("googleId",auth.getCurrentUser().getEmail());
-                Log.d(TAG, "onClick: 이메일은 ? " + auth.getCurrentUser().getEmail());
-                startActivity(intent);
+
+                if(currentUser == null){
+                    Toast.makeText(DetailStoreActivity.this, "로그인을 하셔야합니다.", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(DetailStoreActivity.this, LoginActivity.class));
+                    finish();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(),ReviewWriteActivity.class);
+                    intent.putExtra("storeId",storeId);
+                    intent.putExtra("useremail",auth.getCurrentUser().getEmail());
+                    Log.d(TAG, "onClick: 이메일은 ? " + auth.getCurrentUser().getEmail());
+                    startActivity(intent);
+                }
+
             }
         });
 
@@ -112,7 +159,7 @@ public class DetailStoreActivity extends AppCompatActivity {
                 //Picasso.get().load("http://222.234.36.82:58004"+storeDetailRespDto.getStore().getStoreImg()).into(storeDetailImage);
                 Picasso.get().load(storeDetailRespDto.getStore().getStoreImg()).into(storeDetailImage);
                 storeDetailThemeAdapter.addItems(storeDetailRespDto.getThemes());
-                storeDetailReviewAdapter.addItems(storeDetailRespDto.getReviews());
+          //      storeDetailReviewAdapter.addItems(storeDetailRespDto.getReviews());
 
                 Log.d(TAG, "onChanged: 리뷰보기 " + storeDetailRespDto.getReviews());
                 Log.d(TAG, "onChanged: gettheme는" + storeDetailRespDto.getThemes());
