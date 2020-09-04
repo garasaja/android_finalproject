@@ -69,25 +69,12 @@ public class DetailStoreActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference().child("storeId");
+        arrayList = new ArrayList<>();
 
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayList.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    StoreReview storeReview = snapshot.getValue(StoreReview.class);
-                    arrayList.add(storeReview);
-                }
-                storeDetailReviewAdapter.notifyDataSetChanged();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(TAG, "onCancelled: ", databaseError.toException());
-            }
-        });
 
         init();
+
         object();
         listener();
 
@@ -145,9 +132,15 @@ public class DetailStoreActivity extends AppCompatActivity {
         rvDetailStoreTheme.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         rvDetailStoreTheme.setAdapter(storeDetailThemeAdapter);
 
+//        storeDetailReviewAdapter = new StoreDetailReviewAdapter();
+//        rvDetailStoreReview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
+//        rvDetailStoreReview.setAdapter(storeDetailReviewAdapter);
+
         storeDetailReviewAdapter = new StoreDetailReviewAdapter();
         rvDetailStoreReview.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL,false));
         rvDetailStoreReview.setAdapter(storeDetailReviewAdapter);
+
+
 
         storeDetailViewModel = ViewModelProviders.of(this).get(StoreDetailViewModel.class);
 
@@ -163,6 +156,26 @@ public class DetailStoreActivity extends AppCompatActivity {
 
                 Log.d(TAG, "onChanged: 리뷰보기 " + storeDetailRespDto.getReviews());
                 Log.d(TAG, "onChanged: gettheme는" + storeDetailRespDto.getThemes());
+
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                arrayList.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            StoreReview storeReview = snapshot.getValue(StoreReview.class);
+                            Log.d(TAG, "onDataChange: arraylist는" + arrayList);
+                            arrayList.add(storeReview);
+                            Log.d(TAG, "onDataChange: arraylist는" + arrayList);
+                        }
+                        storeDetailReviewAdapter.addItems(arrayList);
+                        storeDetailReviewAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e(TAG, "onCancelled: ", databaseError.toException());
+                    }
+                });
                 storeDetailThemeAdapter.notifyDataSetChanged();
             }
         });

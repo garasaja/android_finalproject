@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.R;
+import com.example.pproject.model.ThemeReview;
 import com.example.pproject.model.dto.ReviewRespDto;
 import com.example.pproject.view.DetailStoreActivity;
 
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class ThemeDetailReviewAdapter extends RecyclerView.Adapter<ThemeDetailReviewAdapter.MyViewHolder> {
     private static final String TAG = "ThemeDetailReviewAdapter";
-    private List<ReviewRespDto> reviewRespDtos = new ArrayList<>();
+    private List<ThemeReview> themeReviews = new ArrayList<>();
     private DetailStoreActivity detailStoreActivity;
 
     public ThemeDetailReviewAdapter() {
@@ -27,12 +28,12 @@ public class ThemeDetailReviewAdapter extends RecyclerView.Adapter<ThemeDetailRe
         this.detailStoreActivity = detailStoreActivity;
     }
 
-    public void addItem(ReviewRespDto reviewRespDto) {
-        reviewRespDtos.add(reviewRespDto);
+    public void addItem(ThemeReview themeReview) {
+        themeReviews.add(themeReview);
     }
 
-    public void addItems(List<ReviewRespDto> reviewRespDtos) {
-        this.reviewRespDtos = reviewRespDtos;
+    public void addItems(List<ThemeReview> themeReviews) {
+        this.themeReviews = themeReviews;
     }
 
 
@@ -49,16 +50,16 @@ public class ThemeDetailReviewAdapter extends RecyclerView.Adapter<ThemeDetailRe
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        ReviewRespDto reviewRespDto = reviewRespDtos.get(position);
-        holder.storeDetailReviewId.setText(reviewRespDto.getId());
+        ThemeReview themeReview = themeReviews.get(position);
+        holder.storeDetailReviewId.setText(themeReview.getUserEmail());
         //holder.storeDetailReviewDay.setText(reviewRespDto.);
-        holder.storeDetailReviewPoint.setText(reviewRespDto.getRating());
-        holder.storeDetailReviewContent.setText(reviewRespDto.getContent());
+        holder.storeDetailReviewPoint.setText(themeReview.getRating());
+        holder.storeDetailReviewContent.setText(themeReview.getContent());
     }
 
     @Override
     public int getItemCount() {
-        return reviewRespDtos.size();
+        return themeReviews.size();
     }
 
 

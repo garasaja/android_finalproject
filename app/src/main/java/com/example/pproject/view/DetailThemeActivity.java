@@ -69,11 +69,12 @@ public class DetailThemeActivity extends AppCompatActivity {
         currentUser = auth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference().child("storeId");
+        arrayList = new ArrayList<>();
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayList.clear();
+        //        arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     StoreReview storeReview = snapshot.getValue(StoreReview.class);
                     arrayList.add(storeReview);
@@ -161,6 +162,5 @@ public class DetailThemeActivity extends AppCompatActivity {
         tvThemeDetailTitle = findViewById(R.id.tv_theme_detail_title);
         tvThemeDetailIntro = findViewById(R.id.tv_theme_detail_intro);
 
-        auth = FirebaseAuth.getInstance();
     }
 }

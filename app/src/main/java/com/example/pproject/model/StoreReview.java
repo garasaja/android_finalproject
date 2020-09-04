@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StoreReview {
     private String userEmail;
-    private String storeId;
+    private int storeId;
     private String rating;
     private String content;
 

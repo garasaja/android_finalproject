@@ -42,7 +42,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
-        myRef = database.getReference();
+
 
         register = findViewById(R.id.register);
         back = findViewById(R.id.back);
@@ -53,19 +53,30 @@ public class ReviewWriteActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
-
-
+        Intent intent = getIntent();
+        if (intent.hasExtra("storeId")) {
+            final int storeId = intent.getIntExtra("storeId",0);
+            Log.d(TAG, "onClick: 스토어아이디가져욤?" + storeId);
+        }
 
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 database = FirebaseDatabase.getInstance();
+                myRef = database.getReference();
 
                 Intent intent = getIntent();
                 if (intent.hasExtra("storeId")) {
-                    final String storeId = intent.getStringExtra("storeId");
+                    final int storeId = intent.getIntExtra("storeId",0);
+                    Log.d(TAG, "onClick: 스토어아이디가져욤?" + storeId);
                     radiobutton = findViewById(radioGroup.getCheckedRadioButtonId());
                     String radioresult = radiobutton.getText().toString();
                     Log.d(TAG, "onClick: 라디오버튼 체크가져옴?" + radioresult);
@@ -99,7 +110,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
                             useremail,themeId,radioresult,reviewtext
                     );
                     myRef.child("themeId").push().setValue(themeReview);
-                    finish();
+                    onBackPressed();
 
 //                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
 //                    intent1.putExtra("themeId",themeId);

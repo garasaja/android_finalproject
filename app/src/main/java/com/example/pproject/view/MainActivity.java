@@ -22,6 +22,8 @@ import com.example.pproject.view.fragment.StoreFragment;
 import com.example.pproject.view.fragment.ThemeFragment;
 import com.example.pproject.view.fragment.HomeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
@@ -39,19 +41,32 @@ public class MainActivity extends AppCompatActivity {
     private MyMenuFragment myMenuFragment;
     private StoreFragment storeFragment;
     private ThemeFragment themeFragment;
-
+    private FirebaseAuth auth;
+    private FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
+
+        if (currentUser != null) {
+            auth.signOut();
+        }
+
         init();
         replaceFragment();
        // permissionListener();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy: 디스트로이 타냐");
+        super.onDestroy();
+//        auth.signOut();
+    }
 
     public void init() {
         bottomNavigationView = findViewById(R.id.bottomNavi);
