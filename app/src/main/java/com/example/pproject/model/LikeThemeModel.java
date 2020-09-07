@@ -11,10 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Favorite {
-    private int id;
-    private int userEmail;
-    private int pickId;
-    private String type;
-    private Timestamp createDate;
+public class LikeThemeModel {
+    private String Uid;
+    private Theme theme;
 }

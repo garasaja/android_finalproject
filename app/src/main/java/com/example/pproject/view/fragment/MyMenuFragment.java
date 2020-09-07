@@ -54,6 +54,9 @@ public class MyMenuFragment extends Fragment {
 
     private void initobject() {
         setting.setVisibility(View.GONE);
+        question.setVisibility(View.GONE);
+        likestore.setVisibility(View.GONE);
+        liketheme.setVisibility(View.GONE);
         Intent intent = getActivity().getIntent();
         String nickname2 = intent.getStringExtra("nickname");
        // btnMymenuLogin.setText(nickname);
@@ -61,6 +64,8 @@ public class MyMenuFragment extends Fragment {
         if (nickname.getText() == nickname2) {
             btnMymenuLogin.setVisibility(View.GONE);
             setting.setVisibility(View.VISIBLE);
+            likestore.setVisibility(View.VISIBLE);
+            liketheme.setVisibility(View.VISIBLE);
         }
 
     }

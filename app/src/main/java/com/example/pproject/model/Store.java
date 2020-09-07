@@ -49,4 +49,6 @@ public class Store {
     @Expose
     private String createDate;
 
+    private boolean like;
+
 }

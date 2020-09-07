@@ -63,6 +63,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btn_login_join = findViewById(R.id.btn_login_join);
         btngoogle = findViewById(R.id.btn_google);
 
+        btn_findid.setVisibility(View.GONE);
+        btn_findpassword.setVisibility(View.GONE);
 
         auth = FirebaseAuth.getInstance();
 

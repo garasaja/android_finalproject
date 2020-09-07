@@ -1,7 +1,5 @@
 package com.example.pproject.model;
 
-import java.sql.Timestamp;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Favorite {
-    private int id;
-    private int userEmail;
-    private int pickId;
-    private String type;
-    private Timestamp createDate;
+public class LikeStoreModel {
+    private String Uid;
+    private Store store;
 }

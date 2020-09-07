@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ public class StoreFragment extends Fragment implements Filterable {
     private List<Store> storeList = new ArrayList<>();
     private StoreViewModel storeViewModel;
     private SearchView store_search_view;
+    private ImageButton store_favorite_btn;
 
     @Nullable
     @Override
@@ -48,7 +50,25 @@ public class StoreFragment extends Fragment implements Filterable {
         return  rootView;
     }
 
+    private void init(ViewGroup rootView) {
+        rvStore = rootView.findViewById(R.id.rv_store);
+        store_search_view = rootView.findViewById(R.id.store_search_view);
+        store_favorite_btn = rootView.findViewById(R.id.store_favorite_btn);
+    }
+
     private void listener() {
+
+//        store_favorite_btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//              //  store_favorite_btn.getResources().getDrawable(R.drawable.ic_after_favorite_black_24dp);
+//
+//            }
+//        });
+
+
+
         store_search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -79,14 +99,12 @@ public class StoreFragment extends Fragment implements Filterable {
     private void adapter() {
         //리사이클러뷰에 연결
         storeAdapter = new StoreAdapter();
+        Log.d(TAG, "adapter: 알브이 스토어" +rvStore);
         rvStore.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         rvStore.setAdapter(storeAdapter);
     }
 
-    private void init(ViewGroup rootView) {
-        rvStore = rootView.findViewById(R.id.rv_store);
-        store_search_view = rootView.findViewById(R.id.store_search_view);
-    }
+
 
     @Override
     public Filter getFilter() {
