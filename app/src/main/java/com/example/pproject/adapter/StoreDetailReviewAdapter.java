@@ -12,6 +12,7 @@ import com.example.pproject.R;
 import com.example.pproject.model.StoreReview;
 import com.example.pproject.model.dto.ReviewRespDto;
 import com.example.pproject.view.DetailStoreActivity;
+import com.google.firebase.database.core.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,18 @@ public class StoreDetailReviewAdapter extends RecyclerView.Adapter<StoreDetailRe
     private static final String TAG = "StoreDetailReviewAdapter";
     private List<StoreReview> storeReviews = new ArrayList<>();
     private DetailStoreActivity detailStoreActivity;
+    private Context context;
 
-    public StoreDetailReviewAdapter() {
+    public StoreDetailReviewAdapter(ArrayList<StoreReview> arrayList, DetailStoreActivity detailStoreActivity) {
     }
 
     public StoreDetailReviewAdapter(DetailStoreActivity detailStoreActivity) {
         this.detailStoreActivity = detailStoreActivity;
+    }
+
+    public StoreDetailReviewAdapter(List<StoreReview> storeReviews, Context context) {
+        this.storeReviews = storeReviews;
+        this.context = context;
     }
 
     public void addItem(StoreReview storeReview) {

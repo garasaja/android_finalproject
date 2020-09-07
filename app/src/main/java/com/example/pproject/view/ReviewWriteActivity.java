@@ -86,8 +86,9 @@ public class ReviewWriteActivity extends AppCompatActivity {
                     StoreReview storeReview = new StoreReview(
                         useremail,storeId,radioresult,reviewtext
                     );
-                    myRef.child("storeId").push().setValue(storeReview);
-                    finish();
+                    myRef.child("storeId"+storeId).push().setValue(storeReview);
+                    onBackPressed();
+                   // finish();
 
 //                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
 //                    intent1.putExtra("storeId",storeId);
@@ -98,7 +99,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
 
                 } else if (intent.hasExtra("themeId")) {
                     database = FirebaseDatabase.getInstance();
-                    final String themeId = intent.getStringExtra("themeId");
+                    final int themeId = intent.getIntExtra("themeId",0);
                     radiobutton = findViewById(radioGroup.getCheckedRadioButtonId());
                     String radioresult = radiobutton.getText().toString();
                     Log.d(TAG, "onClick: 라디오버튼 체크가져옴?" + radioresult);
@@ -109,14 +110,14 @@ public class ReviewWriteActivity extends AppCompatActivity {
                     ThemeReview themeReview = new ThemeReview(
                             useremail,themeId,radioresult,reviewtext
                     );
-                    myRef.child("themeId").push().setValue(themeReview);
+                    myRef.child("themeId"+themeId).push().setValue(themeReview);
                     onBackPressed();
 
-//                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
+                  //  Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
 //                    intent1.putExtra("themeId",themeId);
 //                    intent1.putExtra("radioresult",radioresult);
 //                    intent1.putExtra("reviewtext",reviewtext);
-//                    startActivity(intent1);
+                 //   startActivity(intent1);
 //                    finish();
                 }
 

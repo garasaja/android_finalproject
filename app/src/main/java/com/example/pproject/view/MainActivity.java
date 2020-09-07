@@ -52,9 +52,7 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
 
-        if (currentUser != null) {
-            auth.signOut();
-        }
+
 
         init();
         replaceFragment();
@@ -65,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         Log.d(TAG, "onDestroy: 디스트로이 타냐");
         super.onDestroy();
+        if (currentUser != null) {
+            auth.signOut();
+        }
 //        auth.signOut();
     }
 

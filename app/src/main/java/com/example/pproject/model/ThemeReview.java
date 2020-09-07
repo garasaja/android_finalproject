@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ThemeReview {
     private String userEmail;
-    private String themeId;
+    private int themeId;
     private String rating;
     private String content;
 
