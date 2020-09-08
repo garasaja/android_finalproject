@@ -30,18 +30,22 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MyMenuFragment extends Fragment {
     private static final String TAG = "MyMenuFragment";
     private Button setting,likestore,liketheme,notice,question,reservelist,btnMymenuLogin;
     private TextView nickname;
     private FirebaseAuth auth;
-
+    private FirebaseUser currentUser;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
         ViewGroup rootView =  (ViewGroup) inflater.inflate(R.layout.mymenu,container,false);
+
+        auth = FirebaseAuth.getInstance();
+        currentUser = auth.getCurrentUser();
 
         init(rootView);
         initobject();
@@ -53,20 +57,26 @@ public class MyMenuFragment extends Fragment {
     }
 
     private void initobject() {
-        setting.setVisibility(View.GONE);
-        question.setVisibility(View.GONE);
-        likestore.setVisibility(View.GONE);
-        liketheme.setVisibility(View.GONE);
-        Intent intent = getActivity().getIntent();
-        String nickname2 = intent.getStringExtra("nickname");
-       // btnMymenuLogin.setText(nickname);
-        nickname.setText(nickname2);
-        if (nickname.getText() == nickname2) {
-            btnMymenuLogin.setVisibility(View.GONE);
-            setting.setVisibility(View.VISIBLE);
-            likestore.setVisibility(View.VISIBLE);
-            liketheme.setVisibility(View.VISIBLE);
+        if (currentUser != null) {
+            Intent intent = getActivity().getIntent();
+            String nickname2 = intent.getStringExtra("nickname");
+            // btnMymenuLogin.setText(nickname);
+            nickname.setText(currentUser.getEmail());
+
+                btnMymenuLogin.setVisibility(View.GONE);
+                setting.setVisibility(View.VISIBLE);
+                likestore.setVisibility(View.GONE);
+                liketheme.setVisibility(View.GONE);
+                question.setVisibility(View.GONE);
+
+        } else {
+            setting.setVisibility(View.GONE);
+            question.setVisibility(View.GONE);
+            likestore.setVisibility(View.GONE);
+            liketheme.setVisibility(View.GONE);
         }
+
+
 
     }
 

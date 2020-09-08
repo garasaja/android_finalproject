@@ -153,10 +153,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
                             myRef.child("likeStore/"+Uid+"/"+store.getId()).push().setValue(likeStoreModel);
                             Log.d(TAG, "onClick: 유아디는? " + Uid);
 
-                            Intent intent = new Intent(itemView.getContext(), LikeStoreActivity.class);
-                            intent.putExtra("storeId",store.getId());
-                            Log.d(TAG, "onClick: 스토어 아디는 ? " + store.getId());
-                            v.getContext().startActivity(intent);
+//                            Intent intent = new Intent(itemView.getContext(), LikeStoreActivity.class);
+//                            intent.putExtra("storeId",store.getId());
+//                            Log.d(TAG, "onClick: 스토어 아디는 ? " + store.getId());
+//                            v.getContext().startActivity(intent);
 
                         } else {
                             store_favorite_btn.setImageResource(R.drawable.ic_before_favorite);
@@ -164,8 +164,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
                             String Uid = currentUser.getUid();
                             myRef.child("likeStore/"+Uid+"/"+store.getId()).removeValue();
 
-                            Intent intent = new Intent(itemView.getContext(), LikeStoreActivity.class);
-                            intent.putExtra("storeId",store.getId());
+//                            Intent intent = new Intent(itemView.getContext(), LikeStoreActivity.class);
+//                            intent.putExtra("storeId",store.getId());
                         }
                     }
 
