@@ -82,6 +82,7 @@ public class ReviewWriteActivity extends AppCompatActivity {
                     Log.d(TAG, "onClick: 라디오버튼 체크가져옴?" + radioresult);
                     String reviewtext = reviewcontent.getText().toString();
                     String useremail = intent.getStringExtra("useremail");
+                    Log.d(TAG, "onClick: 유저이메일" + useremail);
                     reviewemail.setText(useremail);
                     StoreReview storeReview = new StoreReview(
                         useremail,storeId,radioresult,reviewtext
@@ -90,12 +91,12 @@ public class ReviewWriteActivity extends AppCompatActivity {
                     onBackPressed();
                    // finish();
 
-//                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
-//                    intent1.putExtra("storeId",storeId);
-//                    intent1.putExtra("radioresult",radioresult);
-//                    intent1.putExtra("reviewtext",reviewtext);
-//                    startActivity(intent1);
-//                    finish();
+                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
+                    intent1.putExtra("storeId",storeId);
+                    intent1.putExtra("radioresult",radioresult);
+                    intent1.putExtra("reviewtext",reviewtext);
+                    startActivity(intent1);
+                    finish();
 
                 } else if (intent.hasExtra("themeId")) {
                     database = FirebaseDatabase.getInstance();
@@ -113,12 +114,12 @@ public class ReviewWriteActivity extends AppCompatActivity {
                     myRef.child("themeId"+themeId).push().setValue(themeReview);
                     onBackPressed();
 
-                  //  Intent intent1 = new Intent(ReviewWriteActivity.this,DetailStoreActivity.class);
-//                    intent1.putExtra("themeId",themeId);
-//                    intent1.putExtra("radioresult",radioresult);
-//                    intent1.putExtra("reviewtext",reviewtext);
-                 //   startActivity(intent1);
-//                    finish();
+                    Intent intent1 = new Intent(ReviewWriteActivity.this,DetailThemeActivity.class);
+                    intent1.putExtra("themeId",themeId);
+                    intent1.putExtra("radioresult",radioresult);
+                    intent1.putExtra("reviewtext",reviewtext);
+                    startActivity(intent1);
+                    finish();
                 }
 
             }

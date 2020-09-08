@@ -112,6 +112,7 @@ public class DetailThemeActivity extends AppCompatActivity {
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                 ThemeReview themeReview = snapshot.getValue(ThemeReview.class);
                                 arrayList.add(themeReview);
+                                Log.d(TAG, "onDataChange: 어레이리스트" + arrayList);
                             }
                             themeDetailReviewAdapter.addItems(arrayList);
                             themeDetailReviewAdapter.notifyDataSetChanged();
@@ -146,6 +147,7 @@ public class DetailThemeActivity extends AppCompatActivity {
                         intent.putExtra("useremail",auth.getCurrentUser().getEmail());
                         Log.d(TAG, "onClick: 이메일은 ? " + auth.getCurrentUser().getEmail());
                         startActivity(intent);
+                        finish();
                     }
                 }
             });

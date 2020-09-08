@@ -60,6 +60,11 @@ public class DetailStoreActivity extends AppCompatActivity {
 
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreate: ");
         super.onCreate(savedInstanceState);
@@ -184,6 +189,7 @@ public class DetailStoreActivity extends AppCompatActivity {
                     intent.putExtra("useremail", auth.getCurrentUser().getEmail());
                     Log.d(TAG, "onClick: 이메일은 ? " + auth.getCurrentUser().getEmail());
                     startActivity(intent);
+                    finish();
                 }
 
             }
