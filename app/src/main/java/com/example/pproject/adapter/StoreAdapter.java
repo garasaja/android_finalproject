@@ -21,6 +21,7 @@ import com.example.pproject.model.Store;
 import com.example.pproject.model.StoreReview;
 import com.example.pproject.view.DetailStoreActivity;
 //import com.example.pproject.view.fragment.HomeFragment;
+import com.example.pproject.view.LikeStoreActivity;
 import com.example.pproject.view.LoginActivity;
 import com.example.pproject.view.ReviewWriteActivity;
 import com.example.pproject.view.fragment.StoreFragment;
@@ -148,14 +149,23 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
                             myRef = database.getReference();
                             LikeStoreModel likeStoreModel = new LikeStoreModel(Uid,store);
-                            myRef.child("likeStore"+Uid).push().setValue(likeStoreModel);
+
+                            myRef.child("likeStore/"+Uid+"/"+store.getId()).push().setValue(likeStoreModel);
                             Log.d(TAG, "onClick: 유아디는? " + Uid);
+
+                            Intent intent = new Intent(itemView.getContext(), LikeStoreActivity.class);
+                            intent.putExtra("storeId",store.getId());
+                            Log.d(TAG, "onClick: 스토어 아디는 ? " + store.getId());
+                            v.getContext().startActivity(intent);
 
                         } else {
                             store_favorite_btn.setImageResource(R.drawable.ic_before_favorite);
                             image = false;
                             String Uid = currentUser.getUid();
-                            myRef.child("likeStore"+Uid).removeValue();
+                            myRef.child("likeStore/"+Uid+"/"+store.getId()).removeValue();
+
+                            Intent intent = new Intent(itemView.getContext(), LikeStoreActivity.class);
+                            intent.putExtra("storeId",store.getId());
                         }
                     }
 

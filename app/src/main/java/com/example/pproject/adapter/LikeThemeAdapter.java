@@ -12,9 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.R;
+import com.example.pproject.model.LikeStoreModel;
+import com.example.pproject.model.LikeThemeModel;
 import com.example.pproject.model.Theme;
 import com.example.pproject.view.DetailThemeActivity;
+import com.example.pproject.view.LikeThemeActivity;
 import com.example.pproject.view.fragment.ThemeFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,24 +30,23 @@ import java.util.List;
 //import com.example.pproject.view.fragment.HomeFragment;
 
 public class LikeThemeAdapter extends RecyclerView.Adapter<LikeThemeAdapter.MyViewHolder> {
-    private static final String TAG = "themeAdapter";
-    private List<Theme> themeList = new ArrayList<>();
-    private ThemeFragment themeFragment;
+    private static final String TAG = "LikeThemeAdapter";
+    private List<LikeThemeModel> likeThemeModels = new ArrayList<>();
+    private LikeThemeActivity likeThemeActivity;
 
     public LikeThemeAdapter() {
-        this.themeFragment = themeFragment;
     }
 
-    public LikeThemeAdapter(ThemeFragment themeFragment) {
-        this.themeFragment = themeFragment;
+    public LikeThemeAdapter(LikeThemeActivity likeThemeActivity) {
+        this.likeThemeActivity = likeThemeActivity;
     }
 
-    public void addItem(Theme theme) {
-        themeList.add(theme);
+    public void addItem(LikeThemeModel likeThemeModel) {
+        likeThemeModels.add(likeThemeModel);
     }
 
-    public void addItems(List<Theme> themeList) {
-        this.themeList = themeList;
+    public void addItems(List<LikeThemeModel> likeThemeModels) {
+        this.likeThemeModels = likeThemeModels;
     }
 
 
@@ -57,12 +63,12 @@ public class LikeThemeAdapter extends RecyclerView.Adapter<LikeThemeAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Theme theme = themeList.get(position);
-        holder.setTheme(theme);
+        LikeThemeModel likeThemeModel = likeThemeModels.get(position);
+        holder.setLikeThemeModel(likeThemeModel);
 //        holder.homeLocation.setText(store.getLocation()+"");
-        holder.tvPoint.setText(Integer.toString(theme.getRating()));
-        holder.tvTitle.setText(theme.getName());
-        Picasso.get().load(theme.getThemeImg()).into(holder.ivThemeImage);
+        holder.tvPoint.setText(Integer.toString(likeThemeModel.getTheme().getRating()));
+        holder.tvTitle.setText(likeThemeModel.getTheme().getName());
+        Picasso.get().load(likeThemeModel.getTheme().getThemeImg()).into(holder.ivThemeImage);
     //   Picasso.get().load(theme.getThemeImg().replace("192.168.0.21:8080","222.234.36.82:58004")).into(holder.ivThemeImage);
 
 
@@ -71,7 +77,7 @@ public class LikeThemeAdapter extends RecyclerView.Adapter<LikeThemeAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return themeList.size();
+        return likeThemeModels.size();
     }
 
 
@@ -80,10 +86,19 @@ public class LikeThemeAdapter extends RecyclerView.Adapter<LikeThemeAdapter.MyVi
         private ImageView ivThemeImage;
         private TextView tvPoint, tvTitle;
         private Theme theme;
-       // private Button btnFavorite;
+        private FirebaseAuth auth;
+        private FirebaseUser currentUser;
+        private FirebaseDatabase database;
+        private DatabaseReference myRef;
+        private LikeThemeModel likeThemeModel;
+        // private Button btnFavorite;
 
         public void setTheme(Theme theme) {
             this.theme = theme;
+        }
+
+        public void setLikeThemeModel(LikeThemeModel likeThemeModel) {
+            this.likeThemeModel = likeThemeModel;
         }
 
         public MyViewHolder(final View itemView) {
@@ -92,6 +107,7 @@ public class LikeThemeAdapter extends RecyclerView.Adapter<LikeThemeAdapter.MyVi
             ivThemeImage = itemView.findViewById(R.id.theme_image);
             tvPoint = itemView.findViewById(R.id.theme_point);
             tvTitle = itemView.findViewById(R.id.theme_title);
+            String Uid = currentUser.getUid();
             //btnFavorite = itemView.findViewById(R.id.store_favorite_btn);
 
             itemView.setOnClickListener(new View.OnClickListener() {

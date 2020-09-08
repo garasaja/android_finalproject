@@ -52,7 +52,7 @@ public class StoreFragment extends Fragment implements Filterable {
 
     private void init(ViewGroup rootView) {
         rvStore = rootView.findViewById(R.id.rv_store);
-        store_search_view = rootView.findViewById(R.id.store_search_view);
+//        store_search_view = rootView.findViewById(R.id.store_search_view);
         store_favorite_btn = rootView.findViewById(R.id.store_favorite_btn);
     }
 
@@ -69,17 +69,17 @@ public class StoreFragment extends Fragment implements Filterable {
 
 
 
-        store_search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
+//        store_search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                return false;
+//            }
+//        });
     }
 
     private void object() {

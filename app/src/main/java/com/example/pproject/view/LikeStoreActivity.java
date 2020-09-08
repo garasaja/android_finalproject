@@ -42,9 +42,11 @@ public class LikeStoreActivity extends AppCompatActivity {
     private LikeStoreAdapter likeStoreAdapter;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
-    private ArrayList<LikeStoreModel> arrayList;
+    private ArrayList<Store> arrayList;
     private FirebaseUser currentUser;
     private DatabaseReference databaseReference;
+    private LikeStoreModel likeStoreModel;
+    private Store store;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class LikeStoreActivity extends AppCompatActivity {
     }
 
     private void adapter() {
-        likeStoreAdapter = new LikeStoreAdapter();
+        storeAdapter = new StoreAdapter();
         Log.d(TAG, "adapter: 알브이스토어" + rvStore);
         rvStore.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         rvStore.setAdapter(storeAdapter);
@@ -78,21 +80,26 @@ public class LikeStoreActivity extends AppCompatActivity {
 
     private void object() {
         String Uid = currentUser.getUid();
+        Intent intent = getIntent();
+        Log.d(TAG, "object: 인텐트는 ? " + intent);
+        int storeId = intent.getIntExtra("storeId", 0);
         Log.d(TAG, "object: 유아이디는 ? " + Uid);
-        databaseReference = database.getReference("likeStore"+Uid);
+        Log.d(TAG, "object: 스토어 아디는 ? " + storeId);
+        databaseReference = database.getReference("likeStore/"+Uid);
+
         Log.d(TAG, "object: 데이터레퍼런스" + databaseReference);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 arrayList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    LikeStoreModel likeStoreModel = snapshot.getValue(LikeStoreModel.class);
+                    Store store = snapshot.getValue(Store.class);
                     Log.d(TAG, "onDataChange: arraylist는" + arrayList);
-                    arrayList.add(likeStoreModel);
+                    arrayList.add(store);
                     Log.d(TAG, "onDataChange: arraylist는" + arrayList);
                 }
-                likeStoreAdapter.addItems(arrayList);
-                likeStoreAdapter.notifyDataSetChanged();
+                storeAdapter.addItems(arrayList);
+                storeAdapter.notifyDataSetChanged();
             }
 
             @Override

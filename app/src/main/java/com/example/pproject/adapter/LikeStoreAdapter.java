@@ -68,7 +68,8 @@ public class LikeStoreAdapter extends RecyclerView.Adapter<LikeStoreAdapter.MyVi
      //   holder.homeLocation.setText(store.getLocation()+"");
       //  holder.setStore(likeStoreModel.getStore());
         holder.setLikeStoreModel(likeStoreModel);
-        holder.tvPoint.setText(Float.toString(likeStoreModel.getStore().getRating()));
+   //     Log.d(TAG, "onBindViewHolder: 테스트" + likeStoreModel.getStore().getRating());
+   //     holder.tvPoint.setText(Float.toString(likeStoreModel.getStore().getRating()));
         holder.tvTitle.setText(likeStoreModel.getStore().getName());
      //   Picasso.get().load("http://www.yologuys.com/Escape_img/company/668.jpg").into(holder.ivStoreImage);
     //   Picasso.get().load(store.getStoreImg().replace("192.168.0.21:8080","222.234.36.82:58004")).into(holder.ivStoreImage);
@@ -108,13 +109,14 @@ public class LikeStoreAdapter extends RecyclerView.Adapter<LikeStoreAdapter.MyVi
         }
 
 
+
         public MyViewHolder(final View itemView) {
             super(itemView);
             Log.d(TAG, "MyViewHolder: store" + store);
             ivStoreImage = itemView.findViewById(R.id.iv_store_image);
             tvPoint = itemView.findViewById(R.id.store_point);
             tvTitle = itemView.findViewById(R.id.store_title);
-            String Uid = currentUser.getUid();
+//            String Uid = currentUser.getUid();
 //            btnFavorite = itemView.findViewById(R.id.store_favorite_btn);
 
             itemView.setOnClickListener(new View.OnClickListener() {

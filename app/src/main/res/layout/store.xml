@@ -13,12 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <SearchView
-            android:id="@+id/store_search_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
-            android:queryHint="검색하실 카페이름을 입력해주세요"/>
+<!--        <SearchView-->
+<!--            android:id="@+id/store_search_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:iconifiedByDefault="false"-->
+<!--            android:queryHint="검색하실 카페이름을 입력해주세요"/>-->
 
     </LinearLayout>
 

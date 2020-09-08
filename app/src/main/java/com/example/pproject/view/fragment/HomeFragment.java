@@ -36,7 +36,7 @@ public class HomeFragment extends Fragment {
     private CarouselView carouselView;
     private HomeViewModel homeViewModel3;
 
-    private int[] carrouselImage = {R.drawable.main1, R.drawable.main2, R.drawable.main3};
+    private int[] carrouselImage = {R.drawable.carousel1, R.drawable.carousel2, R.drawable.carousel3};
 
     @Nullable
     @Override

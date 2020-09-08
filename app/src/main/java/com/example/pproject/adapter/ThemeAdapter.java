@@ -6,18 +6,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pproject.R;
+import com.example.pproject.model.LikeStoreModel;
+import com.example.pproject.model.LikeThemeModel;
 import com.example.pproject.model.Theme;
 import com.example.pproject.view.DetailStoreActivity;
 //import com.example.pproject.view.fragment.HomeFragment;
 import com.example.pproject.view.DetailThemeActivity;
+import com.example.pproject.view.LoginActivity;
 import com.example.pproject.view.fragment.ThemeFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -81,7 +90,12 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
         private ImageView ivThemeImage;
         private TextView tvPoint, tvTitle;
         private Theme theme;
-       // private Button btnFavorite;
+        private ImageButton theme_favorite_btn;
+        private Boolean image = false;
+        private FirebaseAuth auth;
+        private FirebaseUser currentUser;
+        private FirebaseDatabase database;
+        private DatabaseReference myRef;
 
         public void setTheme(Theme theme) {
             this.theme = theme;
@@ -93,6 +107,7 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
             ivThemeImage = itemView.findViewById(R.id.theme_image);
             tvPoint = itemView.findViewById(R.id.theme_point);
             tvTitle = itemView.findViewById(R.id.theme_title);
+            theme_favorite_btn = itemView.findViewById(R.id.theme_favorite_btn);
             //btnFavorite = itemView.findViewById(R.id.store_favorite_btn);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +118,40 @@ public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder
                     intent.putExtra("themeId", theme.getId());
 
                     v.getContext().startActivity(intent);
+                }
+            });
+
+            theme_favorite_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    auth = FirebaseAuth.getInstance();
+                    currentUser = auth.getCurrentUser();
+                    database = FirebaseDatabase.getInstance();
+
+                    if (currentUser == null) {
+                        Toast.makeText(itemView.getContext(), "로그인을 하셔야합니다.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(itemView.getContext(), LoginActivity.class);
+                        v.getContext().startActivity(intent);
+                    } else {
+
+                        if (image == false) {
+                            theme_favorite_btn.setImageResource(R.drawable.ic_after_favorite_black_24dp);
+                            image = true;
+                            String Uid = currentUser.getUid();
+                            Log.d(TAG, "onClick: 유아디진짜" + Uid);
+
+                            myRef = database.getReference();
+                            LikeThemeModel likeThemeModel = new LikeThemeModel(Uid,theme);
+                            myRef.child("likeTheme/"+Uid+"/"+theme.getId()).push().setValue(likeThemeModel);
+                            Log.d(TAG, "onClick: 유아디는? " + Uid);
+
+                        } else {
+                            theme_favorite_btn.setImageResource(R.drawable.ic_before_favorite);
+                            image = false;
+                            String Uid = currentUser.getUid();
+                            myRef.child("likeTheme/"+Uid+"/"+theme.getId()).removeValue();
+                        }
+                    }
                 }
             });
 
